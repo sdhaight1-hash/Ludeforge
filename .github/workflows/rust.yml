@@ -32,3 +32,16 @@ jobs:
       - name: Format
         if: always()
         run: cargo +stable fmt --all -- --check
+      - name: Dependency inventory
+        if: ${{ always() && runner.os == 'Linux' }}
+        shell: bash
+        run: |
+          if test -f Cargo.lock; then
+            echo 'BEGIN LUDEFORGE CARGO LOCK'
+            cat Cargo.lock
+            echo 'END LUDEFORGE CARGO LOCK'
+            cargo +stable metadata --format-version 1 --locked | python3 -c 'import json,sys; x=json.load(sys.stdin); print(json.dumps([{"name":p["name"],"version":p["version"],"license":p["license"]} for p in x["packages"] if p["source"] is not None],sort_keys=True))'
+          else
+            echo 'Cargo.lock not generated'
+            exit 1
+          fi
