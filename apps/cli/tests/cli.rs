@@ -7,8 +7,12 @@ struct Scratch(PathBuf);
 
 impl Scratch {
     fn new() -> Self {
-        let stamp = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_nanos();
-        let path = std::env::temp_dir().join(format!("ludeforge-cli-{}-{stamp}", std::process::id()));
+        let stamp = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        let path =
+            std::env::temp_dir().join(format!("ludeforge-cli-{}-{stamp}", std::process::id()));
         fs::create_dir(&path).unwrap();
         Self(path)
     }
@@ -21,7 +25,10 @@ impl Drop for Scratch {
 }
 
 fn run(args: &[&Path]) -> Output {
-    Command::new(env!("CARGO_BIN_EXE_ludeforge")).args(args).output().unwrap()
+    Command::new(env!("CARGO_BIN_EXE_ludeforge"))
+        .args(args)
+        .output()
+        .unwrap()
 }
 
 #[test]
@@ -33,17 +40,25 @@ fn cli_validation_normalization_and_exclusive_create() {
     fs::write(&input, bytes).unwrap();
     let result = run(&[Path::new("validate"), &input]);
     assert!(result.status.success(), "{:?}", result);
-    assert!(run(&[Path::new("normalize"), &input, &output]).status.success());
+    assert!(run(&[Path::new("normalize"), &input, &output])
+        .status
+        .success());
     let normalized = fs::read(&output).unwrap();
     assert!(ludeforge_core::load(&normalized).is_ok());
     assert_eq!(fs::read(&input).unwrap(), bytes);
-    assert!(!run(&[Path::new("normalize"), &input, &input]).status.success());
-    assert!(!run(&[Path::new("normalize"), &input, &output]).status.success());
+    assert!(!run(&[Path::new("normalize"), &input, &input])
+        .status
+        .success());
+    assert!(!run(&[Path::new("normalize"), &input, &output])
+        .status
+        .success());
     assert_eq!(fs::read(&output).unwrap(), normalized);
     assert_eq!(fs::read(&input).unwrap(), bytes);
     let refs = run(&[Path::new("references"), &input]);
     assert!(refs.status.success());
-    assert!(serde_json::from_slice::<serde_json::Value>(&refs.stdout).unwrap().is_array());
+    assert!(serde_json::from_slice::<serde_json::Value>(&refs.stdout)
+        .unwrap()
+        .is_array());
 }
 
 #[test]

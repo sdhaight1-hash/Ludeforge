@@ -18,7 +18,9 @@ impl<'de> DeserializeSeed<'de> for Seed<'_> {
 
     fn deserialize<D: de::Deserializer<'de>>(self, d: D) -> Result<Value, D::Error> {
         if self.depth > MAX_DEPTH || *self.remaining == 0 {
-            return Err(de::Error::custom("FORMAT_LIMIT: JSON nesting or node budget exceeded"));
+            return Err(de::Error::custom(
+                "FORMAT_LIMIT: JSON nesting or node budget exceeded",
+            ));
         }
         *self.remaining -= 1;
         d.deserialize_any(StrictVisitor {
@@ -67,7 +69,9 @@ impl<'de> Visitor<'de> for StrictVisitor<'_> {
     }
 
     fn visit_f64<E: de::Error>(self, _: f64) -> Result<Value, E> {
-        Err(E::custom("FORMAT_NUMBER: decimal and exponent numbers are not supported in v1"))
+        Err(E::custom(
+            "FORMAT_NUMBER: decimal and exponent numbers are not supported in v1",
+        ))
     }
 
     fn visit_unit<E: de::Error>(self) -> Result<Value, E> {
@@ -89,7 +93,9 @@ impl<'de> Visitor<'de> for StrictVisitor<'_> {
         let mut values = Map::new();
         while let Some(key) = map.next_key::<String>()? {
             if values.contains_key(&key) {
-                return Err(de::Error::custom("FORMAT_DUPLICATE_KEY: duplicate JSON member"));
+                return Err(de::Error::custom(
+                    "FORMAT_DUPLICATE_KEY: duplicate JSON member",
+                ));
             }
             let value = map.next_value_seed(Seed {
                 depth: self.depth + 1,
@@ -118,7 +124,11 @@ fn parse_error(e: serde_json::Error) -> Vec<Diagnostic> {
 /// Strict decoding and semantic validation. No partially valid Project is returned.
 pub fn load(bytes: &[u8]) -> Result<Project, Vec<Diagnostic>> {
     if bytes.len() > MAX_INPUT_BYTES {
-        return Err(vec![Diagnostic::new("FORMAT_SIZE", "", "project exceeds 16 MiB")]);
+        return Err(vec![Diagnostic::new(
+            "FORMAT_SIZE",
+            "",
+            "project exceeds 16 MiB",
+        )]);
     }
     let mut d = serde_json::Deserializer::from_slice(bytes);
     let mut remaining = MAX_NODES;

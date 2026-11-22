@@ -56,7 +56,9 @@ fn valid_id(id: &str) -> bool {
     !id.is_empty()
         && id.len() <= 64
         && id.as_bytes()[0].is_ascii_alphabetic()
-        && id.bytes().all(|b| b.is_ascii_alphanumeric() || b == b'_' || b == b'-')
+        && id
+            .bytes()
+            .all(|b| b.is_ascii_alphanumeric() || b == b'_' || b == b'-')
 }
 
 fn identity<'a>(ids: &mut BTreeSet<&'a str>, errors: &mut Errors, id: &'a str, path: &str) {
@@ -79,18 +81,27 @@ fn safe(n: i64) -> bool {
 
 fn field_shape(f: &Field, errors: &mut Errors, path: &str) {
     let valid = match f.kind {
-        Kind::Int => matches!((f.min, f.max), (Some(a), Some(b)) if safe(a) && safe(b) && a <= b)
-            && f.target.is_none()
-            && f.options.is_empty(),
-        Kind::Ref => f.target.is_some() && f.min.is_none() && f.max.is_none() && f.options.is_empty(),
-        Kind::Enum => !f.options.is_empty() && f.target.is_none() && f.min.is_none() && f.max.is_none(),
-        Kind::Bool | Kind::Text => f.target.is_none()
-            && f.min.is_none()
-            && f.max.is_none()
-            && f.options.is_empty(),
+        Kind::Int => {
+            matches!((f.min, f.max), (Some(a), Some(b)) if safe(a) && safe(b) && a <= b)
+                && f.target.is_none()
+                && f.options.is_empty()
+        }
+        Kind::Ref => {
+            f.target.is_some() && f.min.is_none() && f.max.is_none() && f.options.is_empty()
+        }
+        Kind::Enum => {
+            !f.options.is_empty() && f.target.is_none() && f.min.is_none() && f.max.is_none()
+        }
+        Kind::Bool | Kind::Text => {
+            f.target.is_none() && f.min.is_none() && f.max.is_none() && f.options.is_empty()
+        }
     };
     if !valid {
-        errors.add("FIELD_SCHEMA", path, "incompatible or missing kind-specific declaration");
+        errors.add(
+            "FIELD_SCHEMA",
+            path,
+            "incompatible or missing kind-specific declaration",
+        );
     }
 }
 
@@ -102,17 +113,29 @@ fn ptr(s: &str) -> String {
 pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
     let mut errors = Errors::default();
     if p.format_version != 1 {
-        errors.add("FORMAT_VERSION", "/format_version", "expected format_version 1");
+        errors.add(
+            "FORMAT_VERSION",
+            "/format_version",
+            "expected format_version 1",
+        );
     }
     if !p.rules.is_empty() {
-        errors.add("RULE_UNSUPPORTED", "/rules", "v1 authoring kernel requires empty rules");
+        errors.add(
+            "RULE_UNSUPPORTED",
+            "/rules",
+            "v1 authoring kernel requires empty rules",
+        );
     }
     if !valid_id(&p.project_id) {
         errors.add("ID_INVALID", "/project_id", "invalid project identifier");
     }
     label(&mut errors, &p.label, "/label");
-    let mut count = p.types.len().saturating_add(p.objects.len())
-        .saturating_add(p.relation_types.len()).saturating_add(p.relations.len())
+    let mut count = p
+        .types
+        .len()
+        .saturating_add(p.objects.len())
+        .saturating_add(p.relation_types.len())
+        .saturating_add(p.relations.len())
         .saturating_add(p.rules.len());
     for t in &p.types {
         count = count.saturating_add(t.fields.len());
@@ -124,7 +147,11 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         count = count.saturating_add(o.values.len());
     }
     if count > MAX_RECORDS {
-        errors.add("FORMAT_LIMIT", "", "project exceeds 100000 logical records and values");
+        errors.add(
+            "FORMAT_LIMIT",
+            "",
+            "project exceeds 100000 logical records and values",
+        );
         return errors.finish();
     }
     let mut ids = BTreeSet::new();
@@ -179,11 +206,21 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
                 req.push(f.id.as_str());
             }
             if f.kind == Kind::Enum {
-                options.insert(f.id.as_str(), f.options.iter().map(|o| o.id.as_str()).collect::<BTreeSet<_>>());
+                options.insert(
+                    f.id.as_str(),
+                    f.options
+                        .iter()
+                        .map(|o| o.id.as_str())
+                        .collect::<BTreeSet<_>>(),
+                );
             }
             if let Some(target) = &f.target {
                 if !types.contains_key(target.as_str()) {
-                    errors.add("REF_MISSING", &format!("/types/{i}/fields/{j}/target"), "reference target type not found");
+                    errors.add(
+                        "REF_MISSING",
+                        &format!("/types/{i}/fields/{j}/target"),
+                        "reference target type not found",
+                    );
                 }
             }
         }
@@ -196,12 +233,20 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         }
         let path = format!("/objects/{i}");
         let Some(schema) = fields.get(o.type_id.as_str()) else {
-            errors.add("REF_MISSING", &format!("{path}/type"), "object type not found");
+            errors.add(
+                "REF_MISSING",
+                &format!("{path}/type"),
+                "object type not found",
+            );
             continue;
         };
         for name in &required[o.type_id.as_str()] {
             if !o.values.contains_key(*name) {
-                errors.add("FIELD_REQUIRED", &format!("{path}/values/{}", ptr(name)), "required field missing");
+                errors.add(
+                    "FIELD_REQUIRED",
+                    &format!("{path}/values/{}", ptr(name)),
+                    "required field missing",
+                );
             }
             if errors.full() {
                 return errors.finish();
@@ -219,7 +264,10 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
             }
             match value {
                 Value::Int(n) => {
-                    if !safe(*n) || *n < field.min.unwrap_or(-SAFE_INTEGER) || *n > field.max.unwrap_or(SAFE_INTEGER) {
+                    if !safe(*n)
+                        || *n < field.min.unwrap_or(-SAFE_INTEGER)
+                        || *n > field.max.unwrap_or(SAFE_INTEGER)
+                    {
                         errors.add("VALUE_RANGE", &vp, "integer outside declared range");
                     }
                 }
@@ -243,11 +291,19 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         let path = format!("/relation_types/{i}");
         for (suffix, id) in [("source", &t.source), ("target", &t.target)] {
             if !types.contains_key(id.as_str()) {
-                errors.add("REF_MISSING", &format!("{path}/{suffix}"), "endpoint type not found");
+                errors.add(
+                    "REF_MISSING",
+                    &format!("{path}/{suffix}"),
+                    "endpoint type not found",
+                );
             }
         }
         if t.mode == Direction::Symmetric && t.source != t.target {
-            errors.add("REL_SCHEMA", &path, "symmetric relation requires identical endpoint types");
+            errors.add(
+                "REL_SCHEMA",
+                &path,
+                "symmetric relation requires identical endpoint types",
+            );
         }
     }
     let mut pairs = BTreeSet::new();
@@ -257,7 +313,11 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         }
         let path = format!("/relations/{i}");
         let Some(t) = relation_types.get(r.type_id.as_str()) else {
-            errors.add("REF_MISSING", &format!("{path}/type"), "relation type not found");
+            errors.add(
+                "REF_MISSING",
+                &format!("{path}/type"),
+                "relation type not found",
+            );
             continue;
         };
         for (suffix, id, expected) in [
@@ -267,7 +327,9 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
             let ep = format!("{path}/{suffix}");
             match objects.get(id.as_str()) {
                 None => errors.add("REF_MISSING", &ep, "endpoint object not found"),
-                Some(o) if &o.type_id != expected => errors.add("REF_TYPE", &ep, "endpoint type mismatch"),
+                Some(o) if &o.type_id != expected => {
+                    errors.add("REF_TYPE", &ep, "endpoint type mismatch")
+                }
                 _ => {}
             }
         }
@@ -275,7 +337,11 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
             errors.add("REL_SELF", &path, "self edge forbidden");
         }
         let (a, b) = if t.mode == Direction::Symmetric && r.source > r.target {
-            errors.add("REL_ORDER", &path, "symmetric endpoints must be in ascending id order");
+            errors.add(
+                "REL_ORDER",
+                &path,
+                "symmetric endpoints must be in ascending id order",
+            );
             (r.target.as_str(), r.source.as_str())
         } else {
             (r.source.as_str(), r.target.as_str())
