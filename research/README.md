@@ -42,3 +42,5 @@ See [research agenda](AGENDA.md) and [evaluation protocol](EVALUATION.md).
 - [Preregistered Phase 1 benchmark](../benchmarks/PHASE1-PROTOCOL.md)
 
 - [Persistence trade-off probe](2026-11-22-persistence-tradeoff-study.md): measured isolated JSON/SQLite comparison and scoped decision.
+
+- [Phase 2 executable rule entry contract](../design/PHASE2-RULE-ENTRY-CONTRACT.md): typed action grammar, run authority, two executable scenarios and replay acceptance.

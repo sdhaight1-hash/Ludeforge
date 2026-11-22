@@ -8,3 +8,5 @@ Record decisions as numbered Markdown files: 0001-short-title.md. Include status
 - [0003 — Minimal Phase 1 JSON authority](0003-phase1-json-authority.md)
 
 - [0004 — Phase 1 typed predicates and relation policies](0004-phase1-constraints.md)
+
+[Phase 2 executable rule entry contract](../PHASE2-RULE-ENTRY-CONTRACT.md): Phase 0 implementation target for typed actions, receipts and replay; not runtime implementation.

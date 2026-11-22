@@ -32,4 +32,6 @@
 | E-023 | [Persistence trade-off probe](2026-11-22-persistence-tradeoff-study.md) | Executed isolated Python experiment | 18 equivalent edits, three rollback and three partial-file cases; no production durability claim |
 | E-024 | [Six fixture Rust verification](../Development-Audits/2026-11-22-phase1-constraints.md) | Verified integrated behavior | 25 tests per platform, six authored fixture validations, format and strict lint passed at 30622c4 |
 
+| E-025 | [Phase 2 rule entry contract](../design/PHASE2-RULE-ENTRY-CONTRACT.md) | Scoped design specification | Phase 0 action and replay contract, production behavior unverified |
+
 Evidence classifications: proposal; documentation claim; inspected source; measured isolated prototype; verified integrated behavior; bounded exhaustive result; formal proof. Never upgrade one category based on inference alone. Negative or inconclusive results remain part of the record. License checks and rights to redistribute are independent of technical feasibility.
