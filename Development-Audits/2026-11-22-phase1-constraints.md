@@ -10,15 +10,20 @@ Added general typed predicates with statically checked scope/read/ref-read, inte
 
 - [Formatted constraints run](https://github.com/sdhaight1-hash/Ludeforge/actions/runs/45067876578) fully green on Windows/Linux, 19 tests per platform (17 core conformance + 2 CLI).
 - [Six fixture run](https://github.com/sdhaight1-hash/Ludeforge/actions/runs/45067916962) fully green on Windows/Linux; 25 tests per platform (17 core conformance + 6 fixture matrix + 2 CLI), six fixture CLI validations and locked lint/format. Expanded suite includes global constraint budget failure. No arbitrary performance/security/formal correctness proof.
-- [Benchmark source revision](https://github.com/sdhaight1-hash/Ludeforge/actions/runs/45067986057): Linux job fully green; Windows job not yet completed at observation. Benchmark example compiled under Clippy but not executed by that workflow.
+- [Benchmark source revision](https://github.com/sdhaight1-hash/Ludeforge/actions/runs/45067986057): both jobs fully green; benchmark example compiled under Clippy.
+- [Benchmark workflow](https://github.com/sdhaight1-hash/Ludeforge/actions/runs/45068090726) fully green on Windows/Linux; Linux release benchmark executed successfully. [Measured LF-B01 baseline](../benchmarks/2026-11-22-phase1-baseline.md), 100/1000/10000 generated recruits; no gameplay performance claim.
 - Previous intermediate formatting-only failures corrected using exact rustfmt output. No actual runtime rule execution claimed.
 
 ## Phase 0 evidence
 
 - [Two-request replay model](../research/2026-11-22-multi-request-replay-study.md): 173 reachable abstract states / 2249 transitions, four injected counterexamples. Not production replay or persistence.
 - [Storage probe](../research/2026-11-22-persistence-tradeoff-study.md): 18 equivalent edits, three rollback and three truncated-new-file tests. retain JSON, defer destructive writes and migrations until scoped future implementation.
-- [Benchmark protocol](../benchmarks/PHASE1-PROTOCOL.md): preregistered authored sizes 100,1000,10000 recruits, plus separate future 100k encounter target. No measured production throughput yet.
+- [Benchmark protocol](../benchmarks/PHASE1-PROTOCOL.md): preregistered authored sizes 100,1000,10000 recruits, plus separate future 100k encounter target. First authored-kernel release timings now recorded; no measured gameplay throughput yet.
 
 ## Next gate
 
 Original Phase 1 core validation scope (#7) now met by six authored slices and independent negative cases. Phase 0 research on executable action IR, multi-request receipts, licenses and future UI remains active; no derived fields, generalized aggregation, compiled action rules, migration or durable runtime. Do not make new feature tickets implicit blockers for bootstrap; explicitly scope additional work. 
+
+## Scoped ticket disposition
+
+#2, #3, #7 and #12 accepted/closed with linked conformance and research evidence; initial #4 rule-entry contract and #9 protocol documented. #1 external license/source checks and #5 project licensing remain open; Phase 2 runtime, #10/#13 implementation research and #16 deeper diagnostics are outstanding. The verified authoring core is not a complete TTRPG engine.

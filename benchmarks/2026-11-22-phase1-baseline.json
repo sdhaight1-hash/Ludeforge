@@ -1,0 +1,151 @@
+{
+  "benchmark": "LF-B01",
+  "commit": "978284c3afc5ed8da20d9369e17fe98f89c5f642",
+  "workflow_run": 45068090726,
+  "job": 137348669772,
+  "os": "GitHub-hosted Ubuntu Linux",
+  "rust": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+  "cpu": "AMD EPYC 7763 64-Core Processor, 4 visible vCPUs",
+  "memory_mib": 15983,
+  "mode": "locked release",
+  "warmups": 1,
+  "repetitions": 7,
+  "records": [
+    {
+      "operation": "validate",
+      "recruits": 100,
+      "bytes": 37423,
+      "median_us": 101,
+      "samples_us": [
+        104,
+        102,
+        102,
+        100,
+        100,
+        100,
+        101
+      ]
+    },
+    {
+      "operation": "decode_validate",
+      "recruits": 100,
+      "bytes": 37423,
+      "median_us": 423,
+      "samples_us": [
+        423,
+        450,
+        409,
+        435,
+        412,
+        406,
+        439
+      ]
+    },
+    {
+      "operation": "normalize",
+      "recruits": 100,
+      "bytes": 37423,
+      "median_us": 197,
+      "samples_us": [
+        203,
+        198,
+        225,
+        196,
+        197,
+        195,
+        197
+      ]
+    },
+    {
+      "operation": "validate",
+      "recruits": 1000,
+      "bytes": 356923,
+      "median_us": 1156,
+      "samples_us": [
+        1167,
+        1154,
+        1173,
+        1163,
+        1147,
+        1156,
+        1149
+      ]
+    },
+    {
+      "operation": "decode_validate",
+      "recruits": 1000,
+      "bytes": 356923,
+      "median_us": 4026,
+      "samples_us": [
+        4109,
+        4026,
+        4001,
+        3999,
+        4032,
+        4102,
+        4013
+      ]
+    },
+    {
+      "operation": "normalize",
+      "recruits": 1000,
+      "bytes": 356923,
+      "median_us": 2141,
+      "samples_us": [
+        2145,
+        2141,
+        2154,
+        2136,
+        2133,
+        2141,
+        2140
+      ]
+    },
+    {
+      "operation": "validate",
+      "recruits": 10000,
+      "bytes": 3560923,
+      "median_us": 13705,
+      "samples_us": [
+        13705,
+        13531,
+        13817,
+        13861,
+        13718,
+        13585,
+        13583
+      ]
+    },
+    {
+      "operation": "decode_validate",
+      "recruits": 10000,
+      "bytes": 3560923,
+      "median_us": 58552,
+      "samples_us": [
+        55649,
+        61839,
+        55263,
+        58552,
+        73903,
+        63301,
+        54763
+      ]
+    },
+    {
+      "operation": "normalize",
+      "recruits": 10000,
+      "bytes": 3560923,
+      "median_us": 27162,
+      "samples_us": [
+        27229,
+        27030,
+        28520,
+        27515,
+        26983,
+        27162,
+        27124
+      ]
+    }
+  ],
+  "limitations": "Generated repetitive valid fixture, single-threaded, virtualized shared CI hardware, no disk I/O in timing, no peak allocation/throughput inference, no runtime or actual editor workload."
+}

@@ -4,7 +4,7 @@
 
 Ludeforge is a proposed local-first, system-agnostic engineering environment for original tabletop role-playing games. It treats mechanical definitions, dependencies, executable rules, simulations, tests and publication as views of a shared ruleset, rather than requiring a separate implementation for every game.
 
-**Status:** Phase 1 Rust authoring kernel and CLI source under development. Compilation and conformance checks are tracked in [GitHub Actions](https://github.com/sdhaight1-hash/Ludeforge/actions). No executable rules engine or desktop editor yet.
+**Status:** Scoped Phase 1 Rust authoring kernel and CLI verified with six authored fixtures, 25 tests per platform and a measured release benchmark. Compilation and conformance checks are tracked in [GitHub Actions](https://github.com/sdhaight1-hash/Ludeforge/actions). No executable action runtime or desktop editor yet. [Phase 1 release baseline](benchmarks/2026-11-22-phase1-baseline.md).
 
 ## Project direction
 
