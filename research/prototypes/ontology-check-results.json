@@ -1,0 +1,55 @@
+{
+  "assertions": 32,
+  "checks": [
+    "composition permutation 0",
+    "composition permutation 1",
+    "composition permutation 2",
+    "composition permutation 3",
+    "composition permutation 4",
+    "composition permutation 5",
+    "composition idempotent",
+    "intersection expected",
+    "reject empty intersection",
+    "reject mismatched field kinds",
+    "reject incompatible reference target",
+    "valid predicates",
+    "cross-object rank constraint",
+    "cross-object pledge constraint",
+    "missing referenced value fails closed",
+    "composite unique key",
+    "stable reordered diagnostics",
+    "symmetric duplicate rejected",
+    "directed reciprocal valid",
+    "ancestry cycle rejected",
+    "intentional semantic cycle accepted",
+    "exclusive cardinality rejects not replaces",
+    "self link rejected",
+    "pinned module excludes future field",
+    "module load order irrelevant",
+    "missing pinned revision rejects",
+    "module collision rejects",
+    "multiple module revisions reject",
+    "rename preserves values",
+    "incompatible narrowing atomic rollback",
+    "live field deletion rejects",
+    "retired field cannot be repurposed"
+  ],
+  "incrementalParityCases": 24,
+  "compositionResult": [
+    {
+      "id": "focus",
+      "kind": "int",
+      "min": 2,
+      "max": 8,
+      "required": true
+    },
+    {
+      "id": "rank",
+      "kind": "int",
+      "min": 3,
+      "max": 4,
+      "required": true
+    }
+  ],
+  "limitations": "Synthetic JS research only. Hand-authored reverse index, finite integer intersection, limited predicate ops, tiny relation graphs and flat module locks; no parser, compiler, transitive imports, durable storage, security proof or production performance."
+}
