@@ -1,0 +1,234 @@
+{
+  "assertions": 20,
+  "checks": [
+    "normalized negative denominator",
+    "exact decimal addition",
+    "exact thirds",
+    "zero divisor rejected",
+    "round -3/2 floor",
+    "round -3/2 ceil",
+    "round -3/2 zero",
+    "round -5/2 even",
+    "round -3/2 even",
+    "round 5/2 even",
+    "round 3/2 even",
+    "round -5/2 away",
+    "round 5/2 away",
+    "mixed mass units",
+    "mass/time rejected",
+    "currency/mana rejected",
+    "rate",
+    "explicit modifier phases and tie",
+    "storage order irrelevant",
+    "semantic stage order changes value"
+  ],
+  "exactBinsCompared": 162,
+  "pools": [
+    {
+      "n": 2,
+      "sides": 20,
+      "keep": 1,
+      "ordered": "400",
+      "bins": 20
+    },
+    {
+      "n": 4,
+      "sides": 6,
+      "keep": 3,
+      "ordered": "1296",
+      "bins": 16
+    },
+    {
+      "n": 5,
+      "sides": 6,
+      "keep": 2,
+      "ordered": "7776",
+      "bins": 11
+    },
+    {
+      "n": 5,
+      "sides": 10,
+      "keep": 3,
+      "ordered": "100000",
+      "bins": 28
+    },
+    {
+      "n": 3,
+      "sides": 8,
+      "keep": 1,
+      "ordered": "512",
+      "bins": 8
+    },
+    {
+      "n": 3,
+      "sides": 6,
+      "keep": 3,
+      "ordered": "216",
+      "bins": 16
+    },
+    {
+      "n": 3,
+      "sides": 6,
+      "keep": 0,
+      "ordered": "216",
+      "bins": 1
+    }
+  ],
+  "decks": [
+    {
+      "N": 6,
+      "K": 2,
+      "draws": 2,
+      "bins": 3,
+      "ways": "15"
+    },
+    {
+      "N": 10,
+      "K": 4,
+      "draws": 3,
+      "bins": 4,
+      "ways": "120"
+    },
+    {
+      "N": 12,
+      "K": 6,
+      "draws": 5,
+      "bins": 6,
+      "ways": "792"
+    },
+    {
+      "N": 8,
+      "K": 0,
+      "draws": 3,
+      "bins": 1,
+      "ways": "56"
+    },
+    {
+      "N": 8,
+      "K": 8,
+      "draws": 3,
+      "bins": 1,
+      "ways": "56"
+    },
+    {
+      "N": 8,
+      "K": 4,
+      "draws": 0,
+      "bins": 1,
+      "ways": "1"
+    }
+  ],
+  "explosions": [
+    {
+      "sides": 4,
+      "max_extra": 0,
+      "bins": 4,
+      "uncapped_tail": "1/4"
+    },
+    {
+      "sides": 4,
+      "max_extra": 2,
+      "bins": 10,
+      "uncapped_tail": "1/64"
+    },
+    {
+      "sides": 6,
+      "max_extra": 1,
+      "bins": 11,
+      "uncapped_tail": "1/36"
+    },
+    {
+      "sides": 6,
+      "max_extra": 3,
+      "bins": 21,
+      "uncapped_tail": "1/1296"
+    }
+  ],
+  "uniformMappings": [
+    {
+      "n": 2,
+      "accepted": 16,
+      "rejected": 0,
+      "perOutcome": 8
+    },
+    {
+      "n": 3,
+      "accepted": 15,
+      "rejected": 1,
+      "perOutcome": 5
+    },
+    {
+      "n": 4,
+      "accepted": 16,
+      "rejected": 0,
+      "perOutcome": 4
+    },
+    {
+      "n": 5,
+      "accepted": 15,
+      "rejected": 1,
+      "perOutcome": 3
+    },
+    {
+      "n": 6,
+      "accepted": 12,
+      "rejected": 4,
+      "perOutcome": 2
+    },
+    {
+      "n": 7,
+      "accepted": 14,
+      "rejected": 2,
+      "perOutcome": 2
+    },
+    {
+      "n": 8,
+      "accepted": 16,
+      "rejected": 0,
+      "perOutcome": 2
+    },
+    {
+      "n": 9,
+      "accepted": 9,
+      "rejected": 7,
+      "perOutcome": 1
+    },
+    {
+      "n": 10,
+      "accepted": 10,
+      "rejected": 6,
+      "perOutcome": 1
+    },
+    {
+      "n": 11,
+      "accepted": 11,
+      "rejected": 5,
+      "perOutcome": 1
+    },
+    {
+      "n": 12,
+      "accepted": 12,
+      "rejected": 4,
+      "perOutcome": 1
+    },
+    {
+      "n": 13,
+      "accepted": 13,
+      "rejected": 3,
+      "perOutcome": 1
+    },
+    {
+      "n": 14,
+      "accepted": 14,
+      "rejected": 2,
+      "perOutcome": 1
+    },
+    {
+      "n": 15,
+      "accepted": 15,
+      "rejected": 1,
+      "perOutcome": 1
+    }
+  ],
+  "limitations": "Finite synthetic JS model; no general compiler, checked production bit budgets, affine units, correlated arbitrary pools, PRNG implementation or performance claims."
+}
