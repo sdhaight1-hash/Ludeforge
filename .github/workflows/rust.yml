@@ -1,0 +1,30 @@
+name: Rust kernel
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        run: rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+      - name: Format
+        run: cargo +stable fmt --all -- --check
+      - name: Lint
+        run: cargo +stable clippy --workspace --all-targets -- -D warnings
+      - name: Test
+        run: cargo +stable test --workspace
+      - name: Validate original fixtures
+        run: |
+          cargo +stable run -p ludeforge-cli -- validate examples/lantern-academy/project.json
+          cargo +stable run -p ludeforge-cli -- validate examples/council-of-reeds/project.json
