@@ -1,0 +1,12 @@
+/target/
+**/node_modules/
+**/dist/
+.env
+.env.*
+!.env.example
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+*.log
+.DS_Store
+Thumbs.db
