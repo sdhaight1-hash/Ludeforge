@@ -1,8 +1,8 @@
 //! Phase 1 authoring model. No implicit RPG concepts or executable rule runtime.
 mod constraints;
-mod topology;
 mod model;
 mod parse;
+mod topology;
 mod validation;
 
 pub use model::*;

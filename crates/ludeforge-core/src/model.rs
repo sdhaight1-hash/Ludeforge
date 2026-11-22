@@ -149,8 +149,16 @@ fn is_false(value: &bool) -> bool {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case", deny_unknown_fields)]
 pub enum Constraint {
-    Predicate { id: String, scope_type: String, expr: Expr },
-    Unique { id: String, scope_type: String, fields: Vec<String> },
+    Predicate {
+        id: String,
+        scope_type: String,
+        expr: Expr,
+    },
+    Unique {
+        id: String,
+        scope_type: String,
+        fields: Vec<String>,
+    },
 }
 
 impl Constraint {

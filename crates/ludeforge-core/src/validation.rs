@@ -197,7 +197,12 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         identity(&mut ids, &mut errors, &r.id, &format!("/relations/{i}/id"));
     }
     for (i, c) in p.constraints.iter().enumerate() {
-        identity(&mut ids, &mut errors, c.id(), &format!("/constraints/{i}/id"));
+        identity(
+            &mut ids,
+            &mut errors,
+            c.id(),
+            &format!("/constraints/{i}/id"),
+        );
     }
     // Invalid identities or field shapes make semantic lookups ambiguous. Fail closed.
     if !errors.0.is_empty() {

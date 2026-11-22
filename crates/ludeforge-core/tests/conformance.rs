@@ -294,13 +294,25 @@ fn public_validation_rejects_out_of_domain_data_and_caps_diagnostics() {
 
 #[test]
 fn cross_object_invariants_reject_locally_valid_values() {
-    mutated(LANTERN, |p| p["objects"][0]["values"]["max_rank"]["value"] = json!(1), "CONSTRAINT_FALSE");
-    mutated(COUNCIL, |p| p["objects"][0]["values"]["influence"]["value"] = json!(1), "CONSTRAINT_FALSE");
-    mutated(COUNCIL, |p| {
-        let mut pledge = p["objects"][3].clone();
-        pledge["id"] = json!("second_pledge");
-        p["objects"].as_array_mut().unwrap().push(pledge);
-    }, "UNIQUE_KEY");
+    mutated(
+        LANTERN,
+        |p| p["objects"][0]["values"]["max_rank"]["value"] = json!(1),
+        "CONSTRAINT_FALSE",
+    );
+    mutated(
+        COUNCIL,
+        |p| p["objects"][0]["values"]["influence"]["value"] = json!(1),
+        "CONSTRAINT_FALSE",
+    );
+    mutated(
+        COUNCIL,
+        |p| {
+            let mut pledge = p["objects"][3].clone();
+            pledge["id"] = json!("second_pledge");
+            p["objects"].as_array_mut().unwrap().push(pledge);
+        },
+        "UNIQUE_KEY",
+    );
     let mut data = fixture(LANTERN);
     let mut other = data["objects"][0].clone();
     other["id"] = json!("other_role");
@@ -314,19 +326,59 @@ fn cross_object_invariants_reject_locally_valid_values() {
 
 #[test]
 fn constraint_schema_checked_even_on_empty_scope() {
-    mutated(LANTERN, |p| {
-        p["objects"] = json!([]);
-        p["constraints"][0]["expr"]["left"]["field"] = json!("max_rank");
-    }, "CONSTRAINT_SCHEMA");
-    mutated(LANTERN, |p| p["constraints"][0]["expr"]["right"]["field"] = json!("rank"), "CONSTRAINT_SCHEMA");
-    mutated(LANTERN, |p| p["constraints"][0]["expr"]["right"]["target_field"] = json!("rank"), "CONSTRAINT_SCHEMA");
-    mutated(LANTERN, |p| p["constraints"][0]["expr"] = json!({"op":"int","value":1}), "CONSTRAINT_SCHEMA");
-    mutated(LANTERN, |p| p["constraints"][0]["expr"]["left"] = json!({"op":"bool","value":true}), "CONSTRAINT_SCHEMA");
-    mutated(LANTERN, |p| p["constraints"][0]["id"] = json!("rank"), "ID_DUPLICATE");
-    mutated(COUNCIL, |p| p["constraints"][1]["fields"] = json!(["strength","strength"]), "CONSTRAINT_SCHEMA");
-    mutated(COUNCIL, |p| p["types"][2]["fields"][0]["required"] = json!(false), "CONSTRAINT_SCHEMA");
-    mutated(COUNCIL, |p| p["constraints"][1]["fields"] = json!(["sponsor"]), "CONSTRAINT_SCHEMA");
-    mutated(COUNCIL, |p| p["constraints"][1]["fields"] = json!([]), "CONSTRAINT_SCHEMA");
+    mutated(
+        LANTERN,
+        |p| {
+            p["objects"] = json!([]);
+            p["constraints"][0]["expr"]["left"]["field"] = json!("max_rank");
+        },
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        LANTERN,
+        |p| p["constraints"][0]["expr"]["right"]["field"] = json!("rank"),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        LANTERN,
+        |p| p["constraints"][0]["expr"]["right"]["target_field"] = json!("rank"),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        LANTERN,
+        |p| p["constraints"][0]["expr"] = json!({"op":"int","value":1}),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        LANTERN,
+        |p| p["constraints"][0]["expr"]["left"] = json!({"op":"bool","value":true}),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        LANTERN,
+        |p| p["constraints"][0]["id"] = json!("rank"),
+        "ID_DUPLICATE",
+    );
+    mutated(
+        COUNCIL,
+        |p| p["constraints"][1]["fields"] = json!(["strength", "strength"]),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        COUNCIL,
+        |p| p["types"][2]["fields"][0]["required"] = json!(false),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        COUNCIL,
+        |p| p["constraints"][1]["fields"] = json!(["sponsor"]),
+        "CONSTRAINT_SCHEMA",
+    );
+    mutated(
+        COUNCIL,
+        |p| p["constraints"][1]["fields"] = json!([]),
+        "CONSTRAINT_SCHEMA",
+    );
 }
 
 #[test]
@@ -338,7 +390,8 @@ fn expression_short_circuit_and_missing_values() {
     assert!(load(&serde_json::to_vec(&data).unwrap()).is_ok());
     data["constraints"][0]["expr"] = missing_read;
     reject(&serde_json::to_vec(&data).unwrap(), "CONSTRAINT_EVALUATION");
-    data["constraints"][0]["expr"] = json!({"op":"or","left":{"op":"bool","value":true},"right":{"op":"read","field":"rank"}});
+    data["constraints"][0]["expr"] =
+        json!({"op":"or","left":{"op":"bool","value":true},"right":{"op":"read","field":"rank"}});
     reject(&serde_json::to_vec(&data).unwrap(), "CONSTRAINT_SCHEMA");
     data["constraints"][0]["expr"] = json!({"op":"and","left":{"op":"bool","value":false},"right":{"op":"le","left":{"op":"read","field":"optional_score"},"right":{"op":"int","value":0}}});
     reject(&serde_json::to_vec(&data).unwrap(), "CONSTRAINT_FALSE");
@@ -346,22 +399,38 @@ fn expression_short_circuit_and_missing_values() {
 
 #[test]
 fn integer_expression_exactness_and_checked_bounds() {
-    for (op,a,b,expected) in [("add", -2, 3, 1), ("sub", 3, 5, -2), ("mul", -3, 2, -6)] {
+    for (op, a, b, expected) in [("add", -2, 3, 1), ("sub", 3, 5, -2), ("mul", -3, 2, -6)] {
         let mut data = fixture(LANTERN);
         data["constraints"][0]["expr"] = json!({"op":"eq","left":{"op":op,"left":{"op":"int","value":a},"right":{"op":"int","value":b}},"right":{"op":"int","value":expected}});
         assert!(load(&serde_json::to_vec(&data).unwrap()).is_ok());
-        data["constraints"][0]["expr"]["right"]["value"] = json!(expected+1);
+        data["constraints"][0]["expr"]["right"]["value"] = json!(expected + 1);
         reject(&serde_json::to_vec(&data).unwrap(), "CONSTRAINT_FALSE");
     }
-    for (op,a,b) in [("add",SAFE_INTEGER,1),("sub",-SAFE_INTEGER,1),("mul",SAFE_INTEGER,SAFE_INTEGER)] {
-        mutated(LANTERN, |p| p["constraints"][0]["expr"] = json!({"op":"eq","left":{"op":op,"left":{"op":"int","value":a},"right":{"op":"int","value":b}},"right":{"op":"int","value":0}}), "CONSTRAINT_EVALUATION");
+    for (op, a, b) in [
+        ("add", SAFE_INTEGER, 1),
+        ("sub", -SAFE_INTEGER, 1),
+        ("mul", SAFE_INTEGER, SAFE_INTEGER),
+    ] {
+        mutated(
+            LANTERN,
+            |p| p["constraints"][0]["expr"] = json!({"op":"eq","left":{"op":op,"left":{"op":"int","value":a},"right":{"op":"int","value":b}},"right":{"op":"int","value":0}}),
+            "CONSTRAINT_EVALUATION",
+        );
     }
 }
 
 #[test]
 fn relation_cardinality_cycles_and_symmetric_degree() {
-    mutated(COUNCIL, |p| p["relation_types"][0]["max_in"] = json!(1), "REL_CARDINALITY");
-    mutated(COUNCIL, |p| p["relation_types"][0]["max_degree"] = json!(2), "REL_SCHEMA");
+    mutated(
+        COUNCIL,
+        |p| p["relation_types"][0]["max_in"] = json!(1),
+        "REL_CARDINALITY",
+    );
+    mutated(
+        COUNCIL,
+        |p| p["relation_types"][0]["max_degree"] = json!(2),
+        "REL_SCHEMA",
+    );
     let mut p = fixture(COUNCIL);
     p["relation_types"][0]["target"] = json!("delegate");
     p["relation_types"][0]["acyclic"] = json!(true);
@@ -386,7 +455,10 @@ fn relation_cardinality_cycles_and_symmetric_degree() {
     let mut third = p["objects"][1].clone();
     third["id"] = json!("willow");
     p["objects"].as_array_mut().unwrap().push(third);
-    p["relations"].as_array_mut().unwrap().push(json!({"id":"edge_two","type":"supports","source":"reed","target":"willow"}));
+    p["relations"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({"id":"edge_two","type":"supports","source":"reed","target":"willow"}));
     reject(&serde_json::to_vec(&p).unwrap(), "REL_CARDINALITY");
 }
 
@@ -394,10 +466,14 @@ fn relation_cardinality_cycles_and_symmetric_degree() {
 fn constraint_static_edges_include_both_reference_fields() {
     let project = load(LANTERN).unwrap();
     let edges = references(&project).unwrap();
-    for target in ["rank","role_ref","max_rank"] {
-        assert!(edges.iter().any(|e| e.from == "rank_limit" && e.kind == "constraint_read" && e.to == target));
+    for target in ["rank", "role_ref", "max_rank"] {
+        assert!(edges
+            .iter()
+            .any(|e| e.from == "rank_limit" && e.kind == "constraint_read" && e.to == target));
     }
-    assert!(edges.iter().any(|e| e.from == "rank_limit" && e.kind == "constraint_scope" && e.to == "recruit"));
+    assert!(edges
+        .iter()
+        .any(|e| e.from == "rank_limit" && e.kind == "constraint_scope" && e.to == "recruit"));
 }
 
 #[test]
@@ -405,10 +481,21 @@ fn bounded_expression_depth_and_unknown_operations() {
     let mut p = load(LANTERN).unwrap();
     let mut expr = ludeforge_core::Expr::Bool { value: true };
     for _ in 0..33 {
-        expr = ludeforge_core::Expr::Not { value: Box::new(expr) };
+        expr = ludeforge_core::Expr::Not {
+            value: Box::new(expr),
+        };
     }
-    let ludeforge_core::Constraint::Predicate { expr: target, .. } = &mut p.constraints[0] else { panic!("expected predicate"); };
+    let ludeforge_core::Constraint::Predicate { expr: target, .. } = &mut p.constraints[0] else {
+        panic!("expected predicate");
+    };
     *target = expr;
-    assert!(validate(&p).unwrap_err().iter().any(|d| d.code == "CONSTRAINT_SCHEMA"));
-    mutated(LANTERN, |p| p["constraints"][0]["expr"] = json!({"op":"exec","command":"none"}), "FORMAT_SHAPE");
+    assert!(validate(&p)
+        .unwrap_err()
+        .iter()
+        .any(|d| d.code == "CONSTRAINT_SCHEMA"));
+    mutated(
+        LANTERN,
+        |p| p["constraints"][0]["expr"] = json!({"op":"exec","command":"none"}),
+        "FORMAT_SHAPE",
+    );
 }
