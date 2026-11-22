@@ -1,9 +1,9 @@
 //! Relation-kind-local cardinality and directed cycle checks.
-use crate::{Direction, Project, RelationType};
+use crate::{Direction, Project};
 use crate::validation::Errors;
 use std::collections::{BTreeMap, VecDeque};
 
-pub(crate) fn check(p: &Project, types: &BTreeMap<&str, &RelationType>, errors: &mut Errors) {
+pub(crate) fn check(p: &Project, errors: &mut Errors) {
     let mut grouped: BTreeMap<&str, Vec<(usize, &str, &str)>> = BTreeMap::new();
     for (i, r) in p.relations.iter().enumerate() {
         grouped.entry(&r.type_id).or_default().push((i, &r.source, &r.target));
@@ -61,5 +61,4 @@ pub(crate) fn check(p: &Project, types: &BTreeMap<&str, &RelationType>, errors: 
             if visited != incoming.len() { errors.add("REL_CYCLE", &path, "directed relation contains a cycle"); }
         }
     }
-    debug_assert_eq!(types.len(), p.relation_types.len());
 }

@@ -363,7 +363,7 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         crate::constraints::check(p, &fields, &objects, &mut errors);
     }
     if errors.0.is_empty() {
-        crate::topology::check(p, &relation_types, &mut errors);
+        crate::topology::check(p, &mut errors);
     }
     errors.finish()
 }

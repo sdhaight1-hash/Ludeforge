@@ -6,3 +6,5 @@ Record decisions as numbered Markdown files: 0001-short-title.md. Include status
 - [0002 — Minimal implementation footprint](0002-minimal-footprint.md)
 
 - [0003 — Minimal Phase 1 JSON authority](0003-phase1-json-authority.md)
+
+- [0004 — Phase 1 typed predicates and relation policies](0004-phase1-constraints.md)

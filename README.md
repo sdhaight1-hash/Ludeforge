@@ -54,7 +54,7 @@ cargo fmt --all -- --check
 cargo clippy --locked --workspace --all-targets -- -D warnings
 ~~~
 
-Normalization exclusively creates a **new** output file; it never overwrites an existing path. Validation failures emit a JSON array of diagnostics on stderr and exit 1; usage errors exit 2. Validation currently checks authored structural/semantic data, not executable cross-object rules. See [Phase 1 persistence decision](design/adr/0003-phase1-json-authority.md) and [schema format](schemas/README.md).
+Normalization exclusively creates a **new** output file; it never overwrites an existing path. Validation failures emit a JSON array of diagnostics on stderr and exit 1; usage errors exit 2. Validation checks authored structure, types, references, local bounds, pure cross-object predicates, compound uniqueness, and declared relation topology. No action execution yet. See [Phase 1 persistence decision](design/adr/0003-phase1-json-authority.md) and [schema format](schemas/README.md).
 
 Use issues with measurable acceptance criteria, focused branches and reviewed changes. Keep documents and tests aligned with implementation. The repository's licensing decision is outstanding; public visibility alone does not grant reuse rights.
 
