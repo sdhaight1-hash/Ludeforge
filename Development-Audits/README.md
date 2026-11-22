@@ -12,3 +12,5 @@ Chronological audit records use YYYY-MM-DD-short-scope.md. Include inspected com
 - [Mathematical and resource feasibility](2026-11-22-mathematical-feasibility.md)
 
 - [Balance and comparative experiment feasibility](2026-11-22-balance-feasibility.md)
+
+- [Phase 0–1 Rust kernel implementation](2026-11-22-phase1-kernel.md)

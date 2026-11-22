@@ -19,15 +19,15 @@ jobs:
       - name: Install Rust
         run: rustup toolchain install stable --profile minimal --component rustfmt --component clippy
       - name: Lint
-        run: cargo +stable clippy --workspace --all-targets -- -D warnings
+        run: cargo +stable clippy --locked --workspace --all-targets -- -D warnings
       - name: Test
         if: always()
-        run: cargo +stable test --workspace
+        run: cargo +stable test --locked --workspace
       - name: Validate original fixtures
         if: always()
         run: |
-          cargo +stable run -p ludeforge-cli -- validate examples/lantern-academy/project.json
-          cargo +stable run -p ludeforge-cli -- validate examples/council-of-reeds/project.json
+          cargo +stable run --locked -p ludeforge-cli -- validate examples/lantern-academy/project.json
+          cargo +stable run --locked -p ludeforge-cli -- validate examples/council-of-reeds/project.json
 
       - name: Format
         if: always()
@@ -36,12 +36,5 @@ jobs:
         if: ${{ always() && runner.os == 'Linux' }}
         shell: bash
         run: |
-          if test -f Cargo.lock; then
-            echo 'BEGIN LUDEFORGE CARGO LOCK'
-            cat Cargo.lock
-            echo 'END LUDEFORGE CARGO LOCK'
-            cargo +stable metadata --format-version 1 --locked | python3 -c 'import json,sys; x=json.load(sys.stdin); print(json.dumps([{"name":p["name"],"version":p["version"],"license":p["license"]} for p in x["packages"] if p["source"] is not None],sort_keys=True))'
-          else
-            echo 'Cargo.lock not generated'
-            exit 1
-          fi
+          set -o pipefail
+          cargo +stable metadata --format-version 1 --locked | python3 -c 'import json,sys; x=json.load(sys.stdin); print(json.dumps([{"name":p["name"],"version":p["version"],"license":p["license"]} for p in x["packages"] if p["source"] is not None],sort_keys=True))'

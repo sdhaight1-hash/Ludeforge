@@ -42,16 +42,16 @@ Designers define their own concepts, properties, relationships and rules. Dice, 
 
 ## Development
 
-The minimal Rust workspace includes a shared authoring model and headless CLI. Install Rust stable (Rust 1.85 or later candidate minimum; CI currently tests stable). From repository root:
+The minimal Rust workspace includes a shared authoring model and headless CLI. Install Rust stable (manifest minimum Rust 1.85; that minimum is not yet CI-verified. CI tests stable). From repository root:
 
 ~~~sh
-cargo build --workspace
-cargo run -p ludeforge-cli -- validate examples/lantern-academy/project.json
-cargo run -p ludeforge-cli -- references examples/council-of-reeds/project.json
-cargo run -p ludeforge-cli -- normalize examples/lantern-academy/project.json lantern-normalized.json
-cargo test --workspace
+cargo build --locked --workspace
+cargo run --locked -p ludeforge-cli -- validate examples/lantern-academy/project.json
+cargo run --locked -p ludeforge-cli -- references examples/council-of-reeds/project.json
+cargo run --locked -p ludeforge-cli -- normalize examples/lantern-academy/project.json lantern-normalized.json
+cargo test --locked --workspace
 cargo fmt --all -- --check
-cargo clippy --workspace --all-targets -- -D warnings
+cargo clippy --locked --workspace --all-targets -- -D warnings
 ~~~
 
 Normalization exclusively creates a **new** output file; it never overwrites an existing path. Validation failures emit a JSON array of diagnostics on stderr and exit 1; usage errors exit 2. Validation currently checks authored structural/semantic data, not executable cross-object rules. See [Phase 1 persistence decision](design/adr/0003-phase1-json-authority.md) and [schema format](schemas/README.md).
