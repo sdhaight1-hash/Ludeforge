@@ -1,0 +1,363 @@
+{
+  "namedAssertions": 15,
+  "checks": [
+    "pruned enumeration equals exhaustive legal builds",
+    "every omitted build has a dominating legal witness",
+    "pareto front internally nondominated",
+    "prerequisite not silently granted",
+    "attack and guard objectives differ",
+    "known variance",
+    "interaction-only main effect hidden",
+    "inactive factor",
+    "combined factor total",
+    "uniform RPS no unilateral gain",
+    "pure RPS exploitable",
+    "biased RPS exploitable",
+    "damping decays",
+    "reinforcing grows",
+    "undamped oscillation"
+  ],
+  "builds": {
+    "candidateSubsets": 256,
+    "legal": 65,
+    "pareto": 32,
+    "prunedSearchNodes": 214,
+    "front": [
+      {
+        "id": "empty",
+        "cost": 0,
+        "attack": 0,
+        "guard": 0
+      },
+      {
+        "id": "leather",
+        "cost": 2,
+        "attack": 0,
+        "guard": 2
+      },
+      {
+        "id": "staff",
+        "cost": 2,
+        "attack": 2,
+        "guard": 1
+      },
+      {
+        "id": "training",
+        "cost": 2,
+        "attack": 2,
+        "guard": 1
+      },
+      {
+        "id": "blade",
+        "cost": 3,
+        "attack": 4,
+        "guard": 0
+      },
+      {
+        "id": "shield",
+        "cost": 3,
+        "attack": 0,
+        "guard": 4
+      },
+      {
+        "id": "leather+staff",
+        "cost": 4,
+        "attack": 2,
+        "guard": 3
+      },
+      {
+        "id": "leather+training",
+        "cost": 4,
+        "attack": 2,
+        "guard": 3
+      },
+      {
+        "id": "mail",
+        "cost": 4,
+        "attack": 0,
+        "guard": 5
+      },
+      {
+        "id": "mastery+training",
+        "cost": 4,
+        "attack": 5,
+        "guard": 1
+      },
+      {
+        "id": "staff+training",
+        "cost": 4,
+        "attack": 4,
+        "guard": 2
+      },
+      {
+        "id": "blade+training",
+        "cost": 5,
+        "attack": 6,
+        "guard": 1
+      },
+      {
+        "id": "leather+shield",
+        "cost": 5,
+        "attack": 0,
+        "guard": 6
+      },
+      {
+        "id": "shield+staff",
+        "cost": 5,
+        "attack": 2,
+        "guard": 5
+      },
+      {
+        "id": "shield+training",
+        "cost": 5,
+        "attack": 2,
+        "guard": 5
+      },
+      {
+        "id": "blade+shield",
+        "cost": 6,
+        "attack": 4,
+        "guard": 4
+      },
+      {
+        "id": "leather+mastery+training",
+        "cost": 6,
+        "attack": 5,
+        "guard": 3
+      },
+      {
+        "id": "leather+staff+training",
+        "cost": 6,
+        "attack": 4,
+        "guard": 4
+      },
+      {
+        "id": "mail+staff",
+        "cost": 6,
+        "attack": 2,
+        "guard": 6
+      },
+      {
+        "id": "mail+training",
+        "cost": 6,
+        "attack": 2,
+        "guard": 6
+      },
+      {
+        "id": "mastery+staff+training",
+        "cost": 6,
+        "attack": 7,
+        "guard": 2
+      },
+      {
+        "id": "blade+leather+training",
+        "cost": 7,
+        "attack": 6,
+        "guard": 3
+      },
+      {
+        "id": "blade+mastery+training",
+        "cost": 7,
+        "attack": 9,
+        "guard": 1
+      },
+      {
+        "id": "leather+shield+staff",
+        "cost": 7,
+        "attack": 2,
+        "guard": 7
+      },
+      {
+        "id": "leather+shield+training",
+        "cost": 7,
+        "attack": 2,
+        "guard": 7
+      },
+      {
+        "id": "mail+shield",
+        "cost": 7,
+        "attack": 0,
+        "guard": 9
+      },
+      {
+        "id": "mastery+shield+training",
+        "cost": 7,
+        "attack": 5,
+        "guard": 5
+      },
+      {
+        "id": "shield+staff+training",
+        "cost": 7,
+        "attack": 4,
+        "guard": 6
+      },
+      {
+        "id": "blade+shield+training",
+        "cost": 8,
+        "attack": 6,
+        "guard": 5
+      },
+      {
+        "id": "leather+mastery+staff+training",
+        "cost": 8,
+        "attack": 7,
+        "guard": 4
+      },
+      {
+        "id": "mail+mastery+training",
+        "cost": 8,
+        "attack": 5,
+        "guard": 6
+      },
+      {
+        "id": "mail+staff+training",
+        "cost": 8,
+        "attack": 4,
+        "guard": 7
+      }
+    ],
+    "bestAttack": {
+      "id": "blade+mastery+training",
+      "cost": 7,
+      "attack": 9,
+      "guard": 1
+    },
+    "bestGuard": {
+      "id": "mail+shield",
+      "cost": 7,
+      "attack": 0,
+      "guard": 9
+    }
+  },
+  "sensitivity": {
+    "rows": [
+      {
+        "a": -1,
+        "b": -1,
+        "c": -1,
+        "y": 11
+      },
+      {
+        "a": -1,
+        "b": -1,
+        "c": 1,
+        "y": 11
+      },
+      {
+        "a": -1,
+        "b": 1,
+        "c": -1,
+        "y": 5
+      },
+      {
+        "a": -1,
+        "b": 1,
+        "c": 1,
+        "y": 5
+      },
+      {
+        "a": 1,
+        "b": -1,
+        "c": -1,
+        "y": 9
+      },
+      {
+        "a": 1,
+        "b": -1,
+        "c": 1,
+        "y": 9
+      },
+      {
+        "a": 1,
+        "b": 1,
+        "c": -1,
+        "y": 15
+      },
+      {
+        "a": 1,
+        "b": 1,
+        "c": 1,
+        "y": 15
+      }
+    ],
+    "variance": 13,
+    "effects": {
+      "a": {
+        "first": 0.3076923076923077,
+        "total": 1
+      },
+      "b": {
+        "first": 0,
+        "total": 0.6923076923076923
+      },
+      "c": {
+        "first": 0,
+        "total": 0
+      }
+    }
+  },
+  "game": {
+    "matrix": [
+      [
+        0,
+        -1,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ],
+      [
+        -1,
+        1,
+        0
+      ]
+    ],
+    "mixed": {
+      "rowGainNumerator": 0,
+      "columnGainNumerator": 0,
+      "denominator": 9
+    },
+    "pure": {
+      "rowGainNumerator": 1,
+      "columnGainNumerator": 1,
+      "denominator": 1
+    },
+    "biased": {
+      "rowGainNumerator": 12,
+      "columnGainNumerator": 12,
+      "denominator": 16
+    }
+  },
+  "feedback": {
+    "damping": [
+      8,
+      4,
+      2,
+      1,
+      0,
+      0,
+      0
+    ],
+    "reinforcing": [
+      8,
+      16,
+      32,
+      64,
+      128,
+      256,
+      512
+    ],
+    "oscillation": [
+      8,
+      -8,
+      8,
+      -8,
+      8,
+      -8,
+      8
+    ]
+  },
+  "limitations": "Original finite deterministic model. Build score proxies not encounter outcomes; exact front only in this fixture. Independent equiprobable binary parameters; no general Sobol estimator. Complete information finite zero-sum matrix only; no general TTRPG equilibrium. Feedback scalar integer recurrence, no realistic simulation. No performance, Rust, or human validity claims."
+}
