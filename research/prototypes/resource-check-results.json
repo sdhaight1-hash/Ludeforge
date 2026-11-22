@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "states": 27,
+    "transitions": 189,
+    "counterexample": null
+  },
+  "mutants": {
+    "duplicate": {
+      "states": 10,
+      "transitions": 32,
+      "counterexample": [
+        "start0",
+        "tick",
+        "finish0"
+      ],
+      "state": {
+        "stock": 2,
+        "work": [
+          0,
+          0
+        ],
+        "product": 3,
+        "waste": 2,
+        "clock": 1
+      }
+    },
+    "refund": {
+      "states": 5,
+      "transitions": 13,
+      "counterexample": [
+        "start0",
+        "cancel0"
+      ],
+      "state": {
+        "stock": 7,
+        "work": [
+          0,
+          0
+        ],
+        "product": 0,
+        "waste": 0,
+        "clock": 0
+      }
+    }
+  },
+  "batch": {
+    "remaining": 0,
+    "accepted": [
+      "A",
+      "C"
+    ],
+    "rejected": [
+      "B"
+    ]
+  },
+  "permutations": 6,
+  "balanced": {
+    "witness": null,
+    "states": 2
+  },
+  "exploit": {
+    "witness": [
+      "buy",
+      "sell"
+    ],
+    "state": [
+      2,
+      0
+    ]
+  },
+  "limitations": "Finite abstract states, two workpieces, bounded time, explicit fixed integer material accounting; no real scheduler, timestamps, arbitrary agents, starvation/liveness proof, persistence, general exploit detection, performance or Rust validation."
+}

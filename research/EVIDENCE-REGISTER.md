@@ -17,4 +17,8 @@
 | E-012 | [Ontology contract delta](../design/ONTOLOGY-CONTRACT-v0.2.md) | Proposed design | Constraints, composition, imports, migration |
 | E-013 | [Dynamic dependency study](2026-11-22-dynamic-dependency-study.md) | Executed isolated model with separate oracle | Initial and 16 sequential edit comparisons passed |
 
+| E-014 | [Mathematical engine study](2026-11-22-mathematical-engine-study.md) | Primary docs and executed bounded model | 20 assertions, 162 exact bins across 17 distributions, 14 toy range mappings |
+| E-015 | [Mathematical contract v0.3](../design/MATHEMATICS-CONTRACT-v0.3.md) | Proposed specification | Exact numeric semantics, units, modifiers, stochastic receipts |
+| E-016 | [Resource and scheduling study](2026-11-22-resource-scheduling-study.md) | Executed isolated finite model | 27 states / 189 transitions, two injected faults detected, six scheduler permutations and bounded economic witness |
+
 Evidence classifications: proposal; documentation claim; inspected source; measured isolated prototype; verified integrated behavior; bounded exhaustive result; formal proof. Never upgrade one category based on inference alone. Negative or inconclusive results remain part of the record. License checks and rights to redistribute are independent of technical feasibility.

@@ -16,3 +16,8 @@ Results in this directory are synthetic feasibility evidence only.
 ## Ontology follow-up
 
 Run `node research/prototypes/ontology-check.mjs` and `node research/prototypes/dependency-check.mjs`. Their functions ran in the JS research environment; standalone Node invocations remain unverified. Compare JSON outputs to the committed results files. The composition model runs 32 named assertions and 24 limited edit comparisons; the dynamic dependency model maintains a reverse index and compares 16 sequential edits to a separately implemented full-scan oracle. Neither is a production parser, compiler, transaction engine or performance benchmark.
+
+
+## Mathematics and resources
+
+Run `node research/prototypes/math-check.mjs` and `node research/prototypes/resource-check.mjs`. The functions ran in the JS research environment; standalone Node invocations remain unverified. Results are saved alongside the scripts. Mathematical checks use exact BigInt counts and independent enumeration in limited domains; resource model explores finite states and deliberate fault cases. Neither is a production runtime or performance benchmark.

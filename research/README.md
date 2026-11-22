@@ -18,3 +18,9 @@ See [research agenda](AGENDA.md) and [evaluation protocol](EVALUATION.md).
 - [Composition, constraints and schema evolution](2026-11-22-ontology-composition-study.md)
 - [Ontology contract v0.2](../design/ONTOLOGY-CONTRACT-v0.2.md)
 - [Dynamic invalidation feasibility](2026-11-22-dynamic-dependency-study.md)
+
+## Mathematical and simulation follow-up
+
+- [Mathematical engine research](2026-11-22-mathematical-engine-study.md)
+- [Mathematical semantics v0.3](../design/MATHEMATICS-CONTRACT-v0.3.md)
+- [Resources, scheduling and exploit search](2026-11-22-resource-scheduling-study.md)
