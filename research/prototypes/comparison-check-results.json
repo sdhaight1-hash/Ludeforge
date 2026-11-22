@@ -1,0 +1,62 @@
+{
+  "paired": {
+    "n": 20,
+    "sumDelta": 2,
+    "sumSquaredDelta": 2,
+    "successA": 9,
+    "successB": 11,
+    "meanDelta": 0.1,
+    "populationVariance": 0.09
+  },
+  "independent": {
+    "n": 400,
+    "sumDelta": 40,
+    "sumSquaredDelta": 202,
+    "successA": 180,
+    "successB": 220,
+    "meanDelta": 0.1,
+    "populationVariance": 0.495
+  },
+  "oppositePairing": {
+    "n": 20,
+    "sumDelta": 2,
+    "sumSquaredDelta": 20,
+    "successA": 9,
+    "successB": 11,
+    "meanDelta": 0.1,
+    "populationVariance": 0.99
+  },
+  "varianceRatioIndependentToPaired": 5.5,
+  "partitionCases": 10,
+  "baselineTrace": [
+    {
+      "role": "weather",
+      "result": 2
+    },
+    {
+      "role": "attack",
+      "result": 15
+    }
+  ],
+  "variantTrace": [
+    {
+      "role": "weather",
+      "result": 2
+    },
+    {
+      "role": "detail",
+      "result": 3
+    },
+    {
+      "role": "attack",
+      "result": 15
+    }
+  ],
+  "dispositions": {
+    "completed": 3,
+    "rejected": 1,
+    "timeout": 1,
+    "limit": 1
+  },
+  "limitations": "Exhaustive uniform finite outcome comparison, not a statistical sampling run. Population variances are computed over enumerated outcomes; variance ratio predicts comparisons of equal numbers of IID pairs under those coupling assumptions, not measured speedup. Partitioned reductions simulated sequentially, not real concurrency. Semantic receipt is fixed, not a PRNG or complete replay engine."
+}

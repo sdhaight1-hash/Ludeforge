@@ -21,3 +21,8 @@ Run `node research/prototypes/ontology-check.mjs` and `node research/prototypes/
 ## Mathematics and resources
 
 Run `node research/prototypes/math-check.mjs` and `node research/prototypes/resource-check.mjs`. The functions ran in the JS research environment; standalone Node invocations remain unverified. Results are saved alongside the scripts. Mathematical checks use exact BigInt counts and independent enumeration in limited domains; resource model explores finite states and deliberate fault cases. Neither is a production runtime or performance benchmark.
+
+
+## Balance and experiment comparison
+
+Run `node research/prototypes/balance-check.mjs` and `node research/prototypes/comparison-check.mjs`. Functions executed in the JS research environment; standalone Node invocations remain unverified. Balance uses an exhaustive subset oracle and a pruned traversal sharing the same legality predicate (not independent validation of predicate semantics), factorial variance decomposition, finite matrix best responses and scalar feedback traces. Comparison uses exact paired/independent outcome enumeration and logical partition reduction, not a deployed parallel simulator. Results are research-only.

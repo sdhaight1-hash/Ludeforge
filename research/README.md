@@ -24,3 +24,9 @@ See [research agenda](AGENDA.md) and [evaluation protocol](EVALUATION.md).
 - [Mathematical engine research](2026-11-22-mathematical-engine-study.md)
 - [Mathematical semantics v0.3](../design/MATHEMATICS-CONTRACT-v0.3.md)
 - [Resources, scheduling and exploit search](2026-11-22-resource-scheduling-study.md)
+
+## Balance and experimental analysis
+
+- [Balance, optimization and strategic analysis](2026-11-22-balance-optimization-study.md)
+- [Analysis contract v0.4](../design/ANALYSIS-CONTRACT-v0.4.md)
+- [Comparative experiment design](2026-11-22-comparative-experiments-study.md)

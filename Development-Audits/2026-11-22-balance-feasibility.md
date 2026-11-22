@@ -1,0 +1,7 @@
+# Balance and comparative experiment feasibility — 2026-11-22
+
+Starting head 58779de00cbddc9f14034c722327603a8d0d069f. Intermediate 0149e27c90e02e98725c3b9a166e1cd9c05e1145. Primary sources consulted: metagame autobalancing, OR-Tools CP-SAT, pymoo, SALib, OpenSpiel and common-random-number literature. No new external dependencies.
+
+Original finite balance experiment: 15 assertions passed; 256 candidate subsets, 65 legal, 32 nondominated over three explicit objectives. Pruned enumeration agrees with exhaustive using a shared legality predicate. Exact factorial example distinguishes zero marginal effect and 9/13 total effect. RPS best-response test and scalar perturbation examples passed. Comparative experiment enumerates 20 matched, 400 independent and 20 opposite pairs; identical mean difference and distinct population variances; ten partition reduction order cases passed; fixed semantic receipt and trial dispositions checked. Not a production simulator, actual parallel run, or measured performance.
+
+The proposed v0.4 analysis contract and evaluation protocol now specify method status, bounds, witnesses, multi-objective design, policy scope and experiment reproducibility. Advanced analysis is a later phase, not a reason to keep delaying Phase 1. Critical outstanding: strict decoding and persistence, final canonical model, typed IR compile/execute, multiple-request replay and cancellation, exact license decision, conformance fixtures and runnable Rust workspace/CI. Issues remain open; no implementation or human study claimed.

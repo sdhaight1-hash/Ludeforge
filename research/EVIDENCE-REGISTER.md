@@ -21,4 +21,8 @@
 | E-015 | [Mathematical contract v0.3](../design/MATHEMATICS-CONTRACT-v0.3.md) | Proposed specification | Exact numeric semantics, units, modifiers, stochastic receipts |
 | E-016 | [Resource and scheduling study](2026-11-22-resource-scheduling-study.md) | Executed isolated finite model | 27 states / 189 transitions, two injected faults detected, six scheduler permutations and bounded economic witness |
 
+| E-017 | [Balance and optimization study](2026-11-22-balance-optimization-study.md) | Source study and executed finite model | 15 assertions, 65 legal builds of 256, 32 nondominated, exact factorial and best-response examples |
+| E-018 | [Analysis contract v0.4](../design/ANALYSIS-CONTRACT-v0.4.md) | Proposed design | Experiments, optimization, sensitivity, policy, feedback |
+| E-019 | [Comparative experiments](2026-11-22-comparative-experiments-study.md) | Executed isolated finite model | Three coupling constructions, ten partition-order checks, explicit draw alignment and disposition accounting |
+
 Evidence classifications: proposal; documentation claim; inspected source; measured isolated prototype; verified integrated behavior; bounded exhaustive result; formal proof. Never upgrade one category based on inference alone. Negative or inconclusive results remain part of the record. License checks and rights to redistribute are independent of technical feasibility.
