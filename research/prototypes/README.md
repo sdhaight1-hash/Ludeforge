@@ -26,3 +26,5 @@ Run `node research/prototypes/math-check.mjs` and `node research/prototypes/reso
 ## Balance and experiment comparison
 
 Run `node research/prototypes/balance-check.mjs` and `node research/prototypes/comparison-check.mjs`. Functions executed in the JS research environment; standalone Node invocations remain unverified. Balance uses an exhaustive subset oracle and a pruned traversal sharing the same legality predicate (not independent validation of predicate semantics), factorial variance decomposition, finite matrix best responses and scalar feedback traces. Comparison uses exact paired/independent outcome enumeration and logical partition reduction, not a deployed parallel simulator. Results are research-only.
+
+Run `node research/prototypes/multi-request-check.mjs` for the bounded two-request protocol experiment. The same function was executed in the research environment and results committed. Not production runtime verification.

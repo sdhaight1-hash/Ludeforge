@@ -25,4 +25,8 @@
 | E-018 | [Analysis contract v0.4](../design/ANALYSIS-CONTRACT-v0.4.md) | Proposed design | Experiments, optimization, sensitivity, policy, feedback |
 | E-019 | [Comparative experiments](2026-11-22-comparative-experiments-study.md) | Executed isolated finite model | Three coupling constructions, ten partition-order checks, explicit draw alignment and disposition accounting |
 
+| E-020 | [Phase 1 predicate ADR](../design/adr/0004-phase1-constraints.md) | Scoped implementation contract | Pure typed AST, unique keys, relation topology; actual implementation CI tracked separately |
+| E-021 | [Multi-request replay study](2026-11-22-multi-request-replay-study.md) | Executed bounded model | 173 states, 2,249 transitions, four fault witnesses |
+| E-022 | [Phase 1 benchmark protocol](../benchmarks/PHASE1-PROTOCOL.md) | Preregistered workload | Actual results pending; no throughput claim |
+
 Evidence classifications: proposal; documentation claim; inspected source; measured isolated prototype; verified integrated behavior; bounded exhaustive result; formal proof. Never upgrade one category based on inference alone. Negative or inconclusive results remain part of the record. License checks and rights to redistribute are independent of technical feasibility.

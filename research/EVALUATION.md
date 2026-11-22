@@ -24,3 +24,18 @@ Treat proposed benchmarks as targets until measured. Human studies require appro
 - Performance gate remains a separately specified lightweight encounter workload; the current logical partition experiment is not a performance benchmark.
 
 See [analysis contract](../design/ANALYSIS-CONTRACT-v0.4.md) and [comparative experiment study](2026-11-22-comparative-experiments-study.md).
+
+## Phase 0–1 gate refinement
+
+| RQ | Method | Observable evidence |
+|---|---|---|
+| RQ1 generality | Six original authored fixture slices, later executable procedures | Accepted schemas, required kernel changes, unsupported constructs |
+| RQ2 authoring | Equivalent nonprogrammer/programmer editing tasks with form/graph/text | Task completion, errors, correction time, semantic equivalence |
+| RQ3 dependency/validation | Independent seeded fault corpus in projects and runtime | Detected and missed faults, false positives, correct causal IDs |
+| RQ4 simulation | Predeclare objectives/policies, fixed input receipts and human scenarios | Trace correctness, comparative uncertainty, observed vs predicted outcomes |
+| RQ5 publication | Versioned change task and generated value reference comparison | Unresolved references, stale generated values, prose discrepancy |
+| RQ6 creativity/usability | Matched open-ended designer tasks, qualitative feedback with consent | Task success, friction, self-reported constraint/expressivity, not automatic creativity score |
+| RQ7 narrative/procedural | Lantern and diceless Council plus Wayfarer procedure cases | Exact replay, human authority boundaries, unsupported decisions |
+| RQ8 optional AI | Held-out design task comparison with and without proposal assistant | Validity, correction work, cost, latency and observed error rates |
+
+Initial seeded corpus is implemented by Rust conformance and fixture-matrix tests: raw malformed keys/types, dangling refs, arithmetic overflow, false predicates, duplicate tuple, topology and resource budget faults. Probability oracles remain independently hand-enumerated cases; no production probability analyzer yet. [Benchmark/replay specification](../benchmarks/PHASE1-PROTOCOL.md) defines workloads before measurement. Human evaluation must compare matched scenarios and report sample size, recruitment, consent, uncertainty and limitations; no participants or human results claimed. Update RQ mapping against thesis when study instruments are finalized.

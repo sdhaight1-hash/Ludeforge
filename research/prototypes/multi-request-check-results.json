@@ -1,0 +1,48 @@
+{
+  "baseline": {
+    "states": 173,
+    "transitions": 2249,
+    "witness": null
+  },
+  "mutants": {
+    "stale": {
+      "states": 28,
+      "transitions": 109,
+      "witness": [
+        "request0",
+        "edit",
+        "approve0"
+      ],
+      "violation": "stale resolution committed"
+    },
+    "duplicate": {
+      "states": 23,
+      "transitions": 70,
+      "witness": [
+        "request0",
+        "approve0",
+        "approve0"
+      ],
+      "violation": "journal order or duplicate"
+    },
+    "authority": {
+      "states": 8,
+      "transitions": 24,
+      "witness": [
+        "request0",
+        "untrusted0"
+      ],
+      "violation": "unauthorized mutation"
+    },
+    "payload": {
+      "states": 5,
+      "transitions": 16,
+      "witness": [
+        "request0",
+        "alter0"
+      ],
+      "violation": "payload mutated"
+    }
+  },
+  "limitations": "Bounded in-memory toy model, two unique fixed payload request IDs, one optional external edit, serial transitions, no process crash, rule evaluation, cryptographic authentication, concurrent IO or real persistence. Journal application tests mechanical state, not full decision re-execution."
+}
