@@ -1,3 +1,7 @@
-# Cross-component validation
+# Validation
 
-Use original fixtures for valid and invalid data, semantic round trips, reference graphs, atomic transitions, deterministic replay and human adjudication. Keep unit tests close to implementations. Record expected outcomes independently. No tests have been run for this documentation-only foundation.
+Executable Rust conformance tests live alongside their owners:
+- [Core](../crates/ludeforge-core/tests/conformance.rs): original divergent fixtures, raw strict decoding, data mutations, relations, normalization and references.
+- [CLI](../apps/cli/tests/cli.rs): input validation, exclusive new file output and exit codes.
+
+Run cargo test --workspace. See CI for actual results. Research-only JS prototypes remain in research/prototypes; they are not integrated Rust tests.

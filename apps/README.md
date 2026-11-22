@@ -1,6 +1,6 @@
 # Applications
 
-- cli/: headless validation, inspection and later execution.
-- desktop/: designer workspace after core contracts and headless tests exist.
+- [cli/](cli/): Phase 1 headless validate, references and normalize commands using shared core. See root README for usage.
+- desktop/: planned after Phase 2 executable contracts and headless tests.
 
-Both must use shared core services; no duplicated mechanics. No application is implemented yet.
+No independent mechanics in UI or CLI. Source is committed; actual build verification tracked separately.

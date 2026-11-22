@@ -110,7 +110,7 @@ fn parse_error(e: serde_json::Error) -> Vec<Diagnostic> {
         "FORMAT_DUPLICATE_KEY",
     ]
     .into_iter()
-    .find(|code| message.starts_with(code))
+    .find(|code| message.starts_with(*code))
     .unwrap_or("FORMAT_JSON");
     vec![Diagnostic::new(code, "", message)]
 }

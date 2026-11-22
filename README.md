@@ -4,7 +4,7 @@
 
 Ludeforge is a proposed local-first, system-agnostic engineering environment for original tabletop role-playing games. It treats mechanical definitions, dependencies, executable rules, simulations, tests and publication as views of a shared ruleset, rather than requiring a separate implementation for every game.
 
-**Status:** research and repository foundation. No functioning TTRPG engine or desktop editor is claimed yet.
+**Status:** Phase 1 Rust authoring kernel and CLI source under development. Compilation and conformance checks are tracked in [GitHub Actions](https://github.com/sdhaight1-hash/Ludeforge/actions). No executable rules engine or desktop editor yet.
 
 ## Project direction
 
@@ -42,7 +42,19 @@ Designers define their own concepts, properties, relationships and rules. Dice, 
 
 ## Development
 
-Phase 0 research and Phase 1 kernel specification precede implementation. Build commands will be added once a runnable workspace exists. Rust is the proposed core language; UI and storage choices are subject to documented decisions.
+The minimal Rust workspace includes a shared authoring model and headless CLI. Install Rust stable (Rust 1.85 or later candidate minimum; CI currently tests stable). From repository root:
+
+~~~sh
+cargo build --workspace
+cargo run -p ludeforge-cli -- validate examples/lantern-academy/project.json
+cargo run -p ludeforge-cli -- references examples/council-of-reeds/project.json
+cargo run -p ludeforge-cli -- normalize examples/lantern-academy/project.json lantern-normalized.json
+cargo test --workspace
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets -- -D warnings
+~~~
+
+Normalization exclusively creates a **new** output file; it never overwrites an existing path. Validation failures emit a JSON array of diagnostics on stderr and exit 1; usage errors exit 2. Validation currently checks authored structural/semantic data, not executable cross-object rules. See [Phase 1 persistence decision](design/adr/0003-phase1-json-authority.md) and [schema format](schemas/README.md).
 
 Use issues with measurable acceptance criteria, focused branches and reviewed changes. Keep documents and tests aligned with implementation. The repository's licensing decision is outstanding; public visibility alone does not grant reuse rights.
 

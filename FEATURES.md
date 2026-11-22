@@ -1,6 +1,6 @@
 # Feature catalog
 
-All entries are **proposed**; none are claimed implemented. Phase numbers refer to [ROADMAP.md](ROADMAP.md). Specialized workspaces are views over shared primitives, not separate engines.
+Entries describe target scope; LF-01–03 now have initial Phase 1 source (verification pending). Advanced constraints, durability and executable dependency analysis remain planned; no feature is marked complete without evidence. Phase numbers refer to [ROADMAP.md](ROADMAP.md). Specialized workspaces are views over shared primitives, not separate engines.
 
 | ID | Capability | Phase |
 |---|---|---|
