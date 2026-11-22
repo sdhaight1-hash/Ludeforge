@@ -17,3 +17,7 @@ Goal-driven execution: turn vague requests into verifiable targets before implem
 - Document uncertainty; distinguish formal proof, bounded checks, sampling and human observation.
 - Report actual commands and results; if unable to run, say so.
 - Do not publish credentials, private data, or local machine artifacts.
+
+## Research timing
+
+Consult `research/RESEARCH-SCHEDULE.md` and `ROADMAP.md` before initiating an investigation or dependent feature. Conduct blocking research before the decision it governs, verify results against integrated code when available, and do not hold unrelated implementation for later-phase research. Record source evidence and linked issues; move a gate only with a documented reason. Do not treat an exploratory prototype as production validation.

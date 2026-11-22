@@ -17,3 +17,7 @@ Evidence to date: [external prior-art pass](2026-11-22-external-prior-art.md), [
 | P2 | How to link external worlds and game systems? | ConWorld, Causal Thread, world-building projects | Optional import/export boundary; no cross-repo runtime dependency by default |
 
 Each investigation records date, question, verified source/revision/license, method, observed facts, limits, alternative, recommendation, reproducible acceptance evidence and impacted issue/ADR. Distinguish documented claims, inspected source, measured prototype and production verification. Private sources must not be reproduced in public artifacts. No dependency is approved by inclusion.
+
+## Scheduled investigations
+
+Use [RESEARCH-SCHEDULE.md](RESEARCH-SCHEDULE.md) to determine actionable entry/exit gates and associated GitHub tickets. This agenda is the topic inventory, not a requirement to complete all research before implementation.

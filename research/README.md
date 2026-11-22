@@ -30,3 +30,7 @@ See [research agenda](AGENDA.md) and [evaluation protocol](EVALUATION.md).
 - [Balance, optimization and strategic analysis](2026-11-22-balance-optimization-study.md)
 - [Analysis contract v0.4](../design/ANALYSIS-CONTRACT-v0.4.md)
 - [Comparative experiment design](2026-11-22-comparative-experiments-study.md)
+
+## Development-aligned research
+
+- [Research schedule and ticket register](RESEARCH-SCHEDULE.md): phase windows, entry criteria, blocking decisions and verification gates for R01–R15.
