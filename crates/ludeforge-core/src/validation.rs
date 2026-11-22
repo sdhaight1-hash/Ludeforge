@@ -23,20 +23,20 @@ impl Diagnostic {
 }
 
 #[derive(Default)]
-struct Errors(Vec<Diagnostic>);
+pub(crate) struct Errors(Vec<Diagnostic>);
 
 impl Errors {
-    fn add(&mut self, code: &'static str, path: &str, message: impl Into<String>) {
+    pub(crate) fn add(&mut self, code: &'static str, path: &str, message: impl Into<String>) {
         if self.0.len() < MAX_DIAGNOSTICS {
             self.0.push(Diagnostic::new(code, path, message));
         }
     }
 
-    fn full(&self) -> bool {
+    pub(crate) fn full(&self) -> bool {
         self.0.len() >= MAX_DIAGNOSTICS
     }
 
-    fn finish(mut self) -> Result<(), Vec<Diagnostic>> {
+    pub(crate) fn finish(mut self) -> Result<(), Vec<Diagnostic>> {
         if self.0.is_empty() {
             return Ok(());
         }
@@ -136,7 +136,13 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
         .saturating_add(p.objects.len())
         .saturating_add(p.relation_types.len())
         .saturating_add(p.relations.len())
-        .saturating_add(p.rules.len());
+        .saturating_add(p.rules.len())
+        .saturating_add(p.constraints.len());
+    for c in &p.constraints {
+        if let crate::Constraint::Unique { fields, .. } = c {
+            count = count.saturating_add(fields.len());
+        }
+    }
     for t in &p.types {
         count = count.saturating_add(t.fields.len());
         for f in &t.fields {
@@ -189,6 +195,9 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
     }
     for (i, r) in p.relations.iter().enumerate() {
         identity(&mut ids, &mut errors, &r.id, &format!("/relations/{i}/id"));
+    }
+    for (i, c) in p.constraints.iter().enumerate() {
+        identity(&mut ids, &mut errors, c.id(), &format!("/constraints/{i}/id"));
     }
     // Invalid identities or field shapes make semantic lookups ambiguous. Fail closed.
     if !errors.0.is_empty() {
@@ -350,6 +359,12 @@ pub fn validate(p: &Project) -> Result<(), Vec<Diagnostic>> {
             errors.add("REL_DUPLICATE", &path, "duplicate endpoint pair");
         }
     }
+    if errors.0.is_empty() {
+        crate::constraints::check(p, &fields, &objects, &mut errors);
+    }
+    if errors.0.is_empty() {
+        crate::topology::check(p, &relation_types, &mut errors);
+    }
     errors.finish()
 }
 
@@ -401,6 +416,12 @@ pub(crate) fn reference_edges(p: &Project) -> Vec<ReferenceEdge> {
         push(&r.id, "relation_type", None, &r.type_id);
         push(&r.id, "source_object", None, &r.source);
         push(&r.id, "target_object", None, &r.target);
+    }
+    for c in &p.constraints {
+        push(c.id(), "constraint_scope", None, c.scope());
+        for field in crate::constraints::reads(c) {
+            push(c.id(), "constraint_read", None, field);
+        }
     }
     edges.sort();
     edges

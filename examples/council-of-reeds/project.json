@@ -192,5 +192,33 @@
       "target": "bridge"
     }
   ],
-  "rules": []
+  "rules": [],
+  "constraints": [
+    {
+      "kind": "predicate",
+      "id": "pledge_limit",
+      "scope_type": "pledge",
+      "expr": {
+        "op": "le",
+        "left": {
+          "op": "read",
+          "field": "strength"
+        },
+        "right": {
+          "op": "ref_read",
+          "field": "pledging_delegate",
+          "target_field": "influence"
+        }
+      }
+    },
+    {
+      "kind": "unique",
+      "id": "one_pledge",
+      "scope_type": "pledge",
+      "fields": [
+        "pledging_delegate",
+        "pledged_proposal"
+      ]
+    }
+  ]
 }

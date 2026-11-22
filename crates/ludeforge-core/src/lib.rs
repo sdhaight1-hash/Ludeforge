@@ -1,4 +1,6 @@
 //! Phase 1 authoring model. No implicit RPG concepts or executable rule runtime.
+mod constraints;
+mod topology;
 mod model;
 mod parse;
 mod validation;
@@ -18,6 +20,7 @@ pub fn normalize(project: &Project) -> Result<Vec<u8>, Vec<Diagnostic>> {
             f.options.sort_by(|a, b| a.id.cmp(&b.id));
         }
     }
+    p.constraints.sort_by(|a, b| a.id().cmp(b.id()));
     p.objects.sort_by(|a, b| a.id.cmp(&b.id));
     p.relation_types.sort_by(|a, b| a.id.cmp(&b.id));
     p.relations.sort_by(|a, b| a.id.cmp(&b.id));

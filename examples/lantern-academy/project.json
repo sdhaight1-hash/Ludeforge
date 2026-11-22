@@ -106,5 +106,24 @@
   ],
   "relation_types": [],
   "relations": [],
-  "rules": []
+  "rules": [],
+  "constraints": [
+    {
+      "kind": "predicate",
+      "id": "rank_limit",
+      "scope_type": "recruit",
+      "expr": {
+        "op": "le",
+        "left": {
+          "op": "read",
+          "field": "rank"
+        },
+        "right": {
+          "op": "ref_read",
+          "field": "role_ref",
+          "target_field": "max_rank"
+        }
+      }
+    }
+  ]
 }
