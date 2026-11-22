@@ -12,3 +12,9 @@ See [research agenda](AGENDA.md) and [evaluation protocol](EVALUATION.md).
 - [Proposed kernel contract v0.1](../design/KERNEL-CONTRACT-v0.1.md)
 - [Executable research prototypes and results](prototypes/README.md)
 - [Evidence register](EVIDENCE-REGISTER.md)
+
+## Ontology follow-up
+
+- [Composition, constraints and schema evolution](2026-11-22-ontology-composition-study.md)
+- [Ontology contract v0.2](../design/ONTOLOGY-CONTRACT-v0.2.md)
+- [Dynamic invalidation feasibility](2026-11-22-dynamic-dependency-study.md)

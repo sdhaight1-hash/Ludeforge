@@ -1,0 +1,194 @@
+{
+  "initialParity": true,
+  "editParity": 16,
+  "results": [
+    {
+      "change": {
+        "op": "set",
+        "id": "A",
+        "field": "role",
+        "value": "R2"
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "R1",
+        "field": "max",
+        "value": 0
+      },
+      "reevaluated": 0,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "R2",
+        "field": "max",
+        "value": 3
+      },
+      "reevaluated": 2,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "A",
+        "field": "role",
+        "value": "missing"
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "add",
+        "row": {
+          "id": "missing",
+          "type": "role",
+          "f": {
+            "max": 5
+          }
+        }
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "delete",
+        "id": "missing"
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "A",
+        "field": "role",
+        "value": "R1"
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "add",
+        "row": {
+          "id": "L2",
+          "type": "pledge",
+          "f": {
+            "delegate": "D",
+            "proposal": "P",
+            "strength": 1
+          }
+        }
+      },
+      "reevaluated": 2,
+      "activeConstraints": 5,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "L2",
+        "field": "strength",
+        "value": 2
+      },
+      "reevaluated": 2,
+      "activeConstraints": 5,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "add",
+        "row": {
+          "id": "Q",
+          "type": "proposal",
+          "f": {
+            "minimum": 1
+          }
+        }
+      },
+      "reevaluated": 1,
+      "activeConstraints": 6,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "L2",
+        "field": "proposal",
+        "value": "Q"
+      },
+      "reevaluated": 2,
+      "activeConstraints": 6,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "delete",
+        "id": "L"
+      },
+      "reevaluated": 3,
+      "activeConstraints": 5,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "set",
+        "id": "D",
+        "field": "influence",
+        "value": 0
+      },
+      "reevaluated": 1,
+      "activeConstraints": 5,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "delete",
+        "id": "Q"
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "delete",
+        "id": "L2"
+      },
+      "reevaluated": 2,
+      "activeConstraints": 3,
+      "parity": true
+    },
+    {
+      "change": {
+        "op": "add",
+        "row": {
+          "id": "C",
+          "type": "recruit",
+          "f": {
+            "rank": 1,
+            "role": "R1"
+          }
+        }
+      },
+      "reevaluated": 1,
+      "activeConstraints": 4,
+      "parity": true
+    }
+  ],
+  "limitations": "Original tiny finite synthetic model. Dynamic dependencies and membership keys; independent fixture-specific full scan oracle. Constraints use trial AST with no type compiler, no arbitrary queries, no compound uniqueness, no concurrent writes, no persistence or measured performance. Intermediate candidate states intentionally include dangling refs to test error propagation; a production commit must reject invalid candidate states."
+}

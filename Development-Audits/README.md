@@ -6,3 +6,5 @@ Chronological audit records use YYYY-MM-DD-short-scope.md. Include inspected com
 
 - [Research expansion](2026-11-22-research-expansion.md)
 - [Kernel feasibility follow-up](2026-11-22-kernel-feasibility.md)
+
+- [Ontology and dynamic dependency feasibility](2026-11-22-ontology-feasibility.md)
