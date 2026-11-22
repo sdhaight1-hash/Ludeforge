@@ -1,6 +1,6 @@
 # Feature catalog
 
-Entries describe target scope; LF-01–03 now have initial Phase 1 source (verification pending). Advanced constraints, durability and executable dependency analysis remain planned; no feature is marked complete without evidence. Phase numbers refer to [ROADMAP.md](ROADMAP.md). Specialized workspaces are views over shared primitives, not separate engines.
+Entries describe target scope. LF-01–03 scoped authoring implementation verified on Windows/Linux: six fixture slices, typed local/cross-object constraints, compound uniqueness, relation topology, strict JSON, normalized output and static dependency reads. Derived fields, aggregate queries, advanced persistence and runtime dependency analysis remain planned. Phase numbers refer to [ROADMAP.md](ROADMAP.md). Specialized workspaces are views over shared primitives, not separate engines.
 
 | ID | Capability | Phase |
 |---|---|---|

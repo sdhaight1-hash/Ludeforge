@@ -40,3 +40,5 @@ See [research agenda](AGENDA.md) and [evaluation protocol](EVALUATION.md).
 - [Typed predicate and topology contract](../design/adr/0004-phase1-constraints.md)
 - [Multi-request replay research](2026-11-22-multi-request-replay-study.md)
 - [Preregistered Phase 1 benchmark](../benchmarks/PHASE1-PROTOCOL.md)
+
+- [Persistence trade-off probe](2026-11-22-persistence-tradeoff-study.md): measured isolated JSON/SQLite comparison and scoped decision.

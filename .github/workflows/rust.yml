@@ -42,3 +42,11 @@ jobs:
         run: |
           set -o pipefail
           cargo +stable metadata --format-version 1 --locked | python3 -c 'import json,sys; x=json.load(sys.stdin); print(json.dumps([{"name":p["name"],"version":p["version"],"license":p["license"]} for p in x["packages"] if p["source"] is not None],sort_keys=True))'
+      - name: Phase 1 authoring benchmark
+        if: ${{ success() && runner.os == 'Linux' }}
+        shell: bash
+        run: |
+          rustc +stable --version
+          lscpu
+          free -m
+          cargo +stable run --locked --release -p ludeforge-core --example phase1_bench

@@ -5,7 +5,7 @@ Each phase is gated by evidence, not calendar dates. Earlier research can contin
 | Phase | Scope | Exit gate | Status |
 |---|---|---|---|
 | 0 | Research, design alternatives, fixture selection | Document reference evidence, tradeoffs, initial contracts and evaluation method | Open; minimal JSON authority scoped |
-| 1 | Mechanical kernel, canonical storage, validation | Two divergent schemas; lossless round trip; invalid inputs rejected | In development; Rust source and CI |
+| 1 | Mechanical kernel, canonical storage, validation | Two divergent schemas; lossless round trip; invalid inputs rejected | Core gate verified; six authored slices, 25 tests on Windows/Linux; advanced work tracked separately |
 | 2 | Rules, runtime, events, random and human inputs | Atomic actions; stable ordering; replay; suspend/resume demonstrated | Planned |
 | 3 | Designer workspace | Original small game without Rust coding | Planned |
 | 4 | Probability, dependency analysis and tests | Independent probability agreement and seeded fault detection | Planned |

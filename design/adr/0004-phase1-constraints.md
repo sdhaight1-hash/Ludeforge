@@ -1,6 +1,6 @@
 # ADR 0004 — Phase 1 typed predicates and relation policies
 
-Status: scoped implementation decision; awaiting CI verification. Issues #3, #7, #10, #16. Based on [ontology v0.2](../ONTOLOGY-CONTRACT-v0.2.md), [mathematics v0.3](../MATHEMATICS-CONTRACT-v0.3.md), [source study](../../research/2026-11-22-kernel-source-study.md) and [dependency study](../../research/2026-11-22-dynamic-dependency-study.md).
+Status: scoped implementation decision; verified in cross-platform [run 45067916962](https://github.com/sdhaight1-hash/Ludeforge/actions/runs/45067916962). Issues #3, #7, #10, #16. Based on [ontology v0.2](../ONTOLOGY-CONTRACT-v0.2.md), [mathematics v0.3](../MATHEMATICS-CONTRACT-v0.3.md), [source study](../../research/2026-11-22-kernel-source-study.md) and [dependency study](../../research/2026-11-22-dynamic-dependency-study.md).
 
 Use one tagged, bounded AST shared by future rule work; for now it only validates authored object invariants. Full scan is the correct reference semantics. No cache coherence assumption or generalized inference engine. Existing pre-release JSON v1 files remain accepted; new optional fields are not silently understood by older readers. No release or migration from a released version implied.
 

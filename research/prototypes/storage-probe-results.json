@@ -1,0 +1,80 @@
+{
+  "python": "3.13.5",
+  "sqlite": "3.46.1",
+  "platform": "Linux",
+  "results": [
+    {
+      "rows": 100,
+      "source_bytes": 3491,
+      "json_samples_us": [
+        1540,
+        1116,
+        1617,
+        1012,
+        1065
+      ],
+      "sqlite_samples_us": [
+        1624,
+        1315,
+        1495,
+        1495,
+        1398
+      ],
+      "json_median_us": 1116,
+      "sqlite_median_us": 1495,
+      "equivalent_edits": 6,
+      "exception_rollback": true,
+      "partial_new_file_rejected": true,
+      "original_unchanged": true
+    },
+    {
+      "rows": 1000,
+      "source_bytes": 35891,
+      "json_samples_us": [
+        3887,
+        3834,
+        3769,
+        3613,
+        3402
+      ],
+      "sqlite_samples_us": [
+        1431,
+        1232,
+        1384,
+        1409,
+        1281
+      ],
+      "json_median_us": 3769,
+      "sqlite_median_us": 1384,
+      "equivalent_edits": 6,
+      "exception_rollback": true,
+      "partial_new_file_rejected": true,
+      "original_unchanged": true
+    },
+    {
+      "rows": 10000,
+      "source_bytes": 368891,
+      "json_samples_us": [
+        31046,
+        28608,
+        28787,
+        28238,
+        29883
+      ],
+      "sqlite_samples_us": [
+        1531,
+        1712,
+        1314,
+        1887,
+        1651
+      ],
+      "json_median_us": 28787,
+      "sqlite_median_us": 1651,
+      "equivalent_edits": 6,
+      "exception_rollback": true,
+      "partial_new_file_rejected": true,
+      "original_unchanged": true
+    }
+  ],
+  "limits": "Synthetic flat rows, one edit; JSON full read and synced new file vs indexed SQLite update with FULL sync and DELETE journal. No strict Ludeforge parser, semantic constraint validation, same durability guarantee, crash/power-loss simulation, concurrent writers or production performance."
+}
