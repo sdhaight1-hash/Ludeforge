@@ -1,0 +1,128 @@
+{
+  "format_version": 1,
+  "project_id": "mosswater",
+  "label": "Mosswater Crossing",
+  "types": [
+    {
+      "id": "traveler",
+      "label": "traveler",
+      "fields": [
+        {
+          "id": "skill_threshold",
+          "label": "skill_threshold",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 100
+        }
+      ]
+    },
+    {
+      "id": "limb",
+      "label": "limb",
+      "fields": [
+        {
+          "id": "person",
+          "label": "person",
+          "kind": "ref",
+          "required": true,
+          "target": "traveler"
+        },
+        {
+          "id": "capacity",
+          "label": "capacity",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 10
+        }
+      ]
+    },
+    {
+      "id": "injury",
+      "label": "injury",
+      "fields": [
+        {
+          "id": "affected_limb",
+          "label": "affected_limb",
+          "kind": "ref",
+          "required": true,
+          "target": "limb"
+        },
+        {
+          "id": "severity",
+          "label": "severity",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 10
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "scout",
+      "label": "scout",
+      "type": "traveler",
+      "values": {
+        "skill_threshold": {
+          "kind": "int",
+          "value": 63
+        }
+      }
+    },
+    {
+      "id": "lower_leg",
+      "label": "lower_leg",
+      "type": "limb",
+      "values": {
+        "person": {
+          "kind": "ref",
+          "value": "scout"
+        },
+        "capacity": {
+          "kind": "int",
+          "value": 5
+        }
+      }
+    },
+    {
+      "id": "sprain",
+      "label": "sprain",
+      "type": "injury",
+      "values": {
+        "affected_limb": {
+          "kind": "ref",
+          "value": "lower_leg"
+        },
+        "severity": {
+          "kind": "int",
+          "value": 2
+        }
+      }
+    }
+  ],
+  "relation_types": [],
+  "relations": [],
+  "constraints": [
+    {
+      "kind": "predicate",
+      "id": "severity_bound",
+      "scope_type": "injury",
+      "expr": {
+        "op": "le",
+        "left": {
+          "op": "read",
+          "field": "severity"
+        },
+        "right": {
+          "op": "ref_read",
+          "field": "affected_limb",
+          "target_field": "capacity"
+        }
+      }
+    }
+  ],
+  "rules": []
+}

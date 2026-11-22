@@ -1,0 +1,105 @@
+{
+  "format_version": 1,
+  "project_id": "glass",
+  "label": "Glass Market",
+  "types": [
+    {
+      "id": "allocation",
+      "label": "allocation",
+      "fields": [
+        {
+          "id": "budget",
+          "label": "budget",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 20
+        },
+        {
+          "id": "training_cost",
+          "label": "training_cost",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 20
+        },
+        {
+          "id": "equipment_cost",
+          "label": "equipment_cost",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 20
+        },
+        {
+          "id": "contact_cost",
+          "label": "contact_cost",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 20
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "build",
+      "label": "build",
+      "type": "allocation",
+      "values": {
+        "budget": {
+          "kind": "int",
+          "value": 8
+        },
+        "training_cost": {
+          "kind": "int",
+          "value": 3
+        },
+        "equipment_cost": {
+          "kind": "int",
+          "value": 5
+        },
+        "contact_cost": {
+          "kind": "int",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "relation_types": [],
+  "relations": [],
+  "constraints": [
+    {
+      "kind": "predicate",
+      "id": "within_budget",
+      "scope_type": "allocation",
+      "expr": {
+        "op": "le",
+        "left": {
+          "op": "add",
+          "left": {
+            "op": "add",
+            "left": {
+              "op": "read",
+              "field": "training_cost"
+            },
+            "right": {
+              "op": "read",
+              "field": "equipment_cost"
+            }
+          },
+          "right": {
+            "op": "read",
+            "field": "contact_cost"
+          }
+        },
+        "right": {
+          "op": "read",
+          "field": "budget"
+        }
+      }
+    }
+  ],
+  "rules": []
+}

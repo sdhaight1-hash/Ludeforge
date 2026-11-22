@@ -28,6 +28,10 @@ jobs:
         run: |
           cargo +stable run --locked -p ludeforge-cli -- validate examples/lantern-academy/project.json
           cargo +stable run --locked -p ludeforge-cli -- validate examples/council-of-reeds/project.json
+          cargo +stable run --locked -p ludeforge-cli -- validate examples/glass-market/project.json
+          cargo +stable run --locked -p ludeforge-cli -- validate examples/tidemill-workshop/project.json
+          cargo +stable run --locked -p ludeforge-cli -- validate examples/wayfarer-chronicle/project.json
+          cargo +stable run --locked -p ludeforge-cli -- validate examples/mosswater-crossing/project.json
 
       - name: Format
         if: always()

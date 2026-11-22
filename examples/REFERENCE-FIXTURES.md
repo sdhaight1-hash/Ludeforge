@@ -46,3 +46,6 @@ Can the same kernel represent both A and B without engine-specific type addition
 ## Test protocol
 
 Schema fixtures: serialize/deserialize semantically unchanged, reject mutations independently (duplicates, dangling endpoint, wrong kind, missing required field, unsupported version). Runtime fixtures: assert exact state delta, events ordered, rejected actions unchanged, duplicate/stale action handling, deterministic replay and explicit human decision input. No benchmarks or implementation results claimed yet.
+## Phase 1 machine-readable slices
+
+All six original designs now have authored project.json examples. C uses fixed category allocation with an arithmetic budget predicate (not arbitrary purchase-set optimization or modifier stacking); D validates one material ledger snapshot (not transitions/reservations over time); E validates bounded progression and directed acyclic stage relationships (not duration aggregation or journaled confirmation); F validates typed body part and bounded injury severity (not percentile roll execution or movement feedback). The tests independently mutate budget, stock/output, progress/cycle, and injury targets. Do not claim full mechanical expressivity for these domains until runtime cases are implemented.

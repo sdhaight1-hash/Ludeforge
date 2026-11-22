@@ -1,0 +1,136 @@
+{
+  "format_version": 1,
+  "project_id": "tidemill",
+  "label": "Tidemill Workshop",
+  "types": [
+    {
+      "id": "ledger",
+      "label": "ledger",
+      "fields": [
+        {
+          "id": "initial",
+          "label": "initial",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 100
+        },
+        {
+          "id": "available",
+          "label": "available",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 100
+        },
+        {
+          "id": "reserved",
+          "label": "reserved",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 100
+        },
+        {
+          "id": "output",
+          "label": "output",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 100
+        },
+        {
+          "id": "waste",
+          "label": "waste",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 100
+        },
+        {
+          "id": "operations_left",
+          "label": "operations_left",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 2
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "batch",
+      "label": "batch",
+      "type": "ledger",
+      "values": {
+        "initial": {
+          "kind": "int",
+          "value": 6
+        },
+        "available": {
+          "kind": "int",
+          "value": 2
+        },
+        "reserved": {
+          "kind": "int",
+          "value": 4
+        },
+        "output": {
+          "kind": "int",
+          "value": 0
+        },
+        "waste": {
+          "kind": "int",
+          "value": 0
+        },
+        "operations_left": {
+          "kind": "int",
+          "value": 2
+        }
+      }
+    }
+  ],
+  "relation_types": [],
+  "relations": [],
+  "constraints": [
+    {
+      "kind": "predicate",
+      "id": "conserved",
+      "scope_type": "ledger",
+      "expr": {
+        "op": "eq",
+        "left": {
+          "op": "add",
+          "left": {
+            "op": "add",
+            "left": {
+              "op": "add",
+              "left": {
+                "op": "read",
+                "field": "available"
+              },
+              "right": {
+                "op": "read",
+                "field": "reserved"
+              }
+            },
+            "right": {
+              "op": "read",
+              "field": "output"
+            }
+          },
+          "right": {
+            "op": "read",
+            "field": "waste"
+          }
+        },
+        "right": {
+          "op": "read",
+          "field": "initial"
+        }
+      }
+    }
+  ],
+  "rules": []
+}

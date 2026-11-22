@@ -1,0 +1,148 @@
+{
+  "format_version": 1,
+  "project_id": "wayfarer",
+  "label": "Wayfarer Chronicle",
+  "types": [
+    {
+      "id": "life",
+      "label": "life",
+      "fields": [
+        {
+          "id": "capacity",
+          "label": "capacity",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 10
+        },
+        {
+          "id": "confirmed",
+          "label": "confirmed",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 10
+        }
+      ]
+    },
+    {
+      "id": "stage",
+      "label": "stage",
+      "fields": [
+        {
+          "id": "subject",
+          "label": "subject",
+          "kind": "ref",
+          "required": true,
+          "target": "life"
+        },
+        {
+          "id": "duration",
+          "label": "duration",
+          "kind": "int",
+          "required": true,
+          "min": 1,
+          "max": 10
+        },
+        {
+          "id": "prompt",
+          "label": "prompt",
+          "kind": "text",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "journey",
+      "label": "journey",
+      "type": "life",
+      "values": {
+        "capacity": {
+          "kind": "int",
+          "value": 2
+        },
+        "confirmed": {
+          "kind": "int",
+          "value": 1
+        }
+      }
+    },
+    {
+      "id": "early",
+      "label": "early",
+      "type": "stage",
+      "values": {
+        "subject": {
+          "kind": "ref",
+          "value": "journey"
+        },
+        "duration": {
+          "kind": "int",
+          "value": 2
+        }
+      }
+    },
+    {
+      "id": "later",
+      "label": "later",
+      "type": "stage",
+      "values": {
+        "subject": {
+          "kind": "ref",
+          "value": "journey"
+        },
+        "duration": {
+          "kind": "int",
+          "value": 3
+        },
+        "prompt": {
+          "kind": "text",
+          "value": "Choose a destination."
+        }
+      }
+    }
+  ],
+  "relation_types": [
+    {
+      "id": "next_stage",
+      "label": "Next stage",
+      "source": "stage",
+      "target": "stage",
+      "mode": "directed",
+      "unique_pair": true,
+      "allow_self": false,
+      "max_in": 1,
+      "max_out": 1,
+      "acyclic": true
+    }
+  ],
+  "relations": [
+    {
+      "id": "stage_link",
+      "type": "next_stage",
+      "source": "early",
+      "target": "later"
+    }
+  ],
+  "constraints": [
+    {
+      "kind": "predicate",
+      "id": "progress_bound",
+      "scope_type": "life",
+      "expr": {
+        "op": "le",
+        "left": {
+          "op": "read",
+          "field": "confirmed"
+        },
+        "right": {
+          "op": "read",
+          "field": "capacity"
+        }
+      }
+    }
+  ],
+  "rules": []
+}
