@@ -41,6 +41,16 @@
         "unauthorized"
       ],
       "why": "rejected action mutated state"
+    },
+    "overwrite": {
+      "states": 8,
+      "transitions": 22,
+      "counterexample": [
+        "request",
+        "edit",
+        "request"
+      ],
+      "why": "request retry replaced checkpoint"
     }
   },
   "probability": [

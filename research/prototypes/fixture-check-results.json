@@ -1,0 +1,118 @@
+{
+  "outcomes": [
+    {
+      "name": "lantern",
+      "types": 3,
+      "objects": 3,
+      "relations": 0,
+      "valid": true,
+      "roundTrip": true,
+      "rename": true,
+      "normalizedReorder": true
+    },
+    {
+      "name": "council",
+      "types": 3,
+      "objects": 5,
+      "relations": 2,
+      "valid": true,
+      "roundTrip": true,
+      "rename": true,
+      "normalizedReorder": true
+    }
+  ],
+  "mutations": [
+    {
+      "name": "version",
+      "expected": "VERSION",
+      "actual": [
+        "VERSION"
+      ]
+    },
+    {
+      "name": "duplicate",
+      "expected": "DUPLICATE",
+      "actual": [
+        "DUPLICATE"
+      ]
+    },
+    {
+      "name": "wrong type",
+      "expected": "TYPE",
+      "actual": [
+        "TYPE"
+      ]
+    },
+    {
+      "name": "required",
+      "expected": "REQUIRED",
+      "actual": [
+        "REQUIRED"
+      ]
+    },
+    {
+      "name": "unknown field",
+      "expected": "UNKNOWN_FIELD",
+      "actual": [
+        "UNKNOWN_FIELD"
+      ]
+    },
+    {
+      "name": "kind",
+      "expected": "KIND",
+      "actual": [
+        "KIND"
+      ]
+    },
+    {
+      "name": "range",
+      "expected": "RANGE",
+      "actual": [
+        "RANGE"
+      ]
+    },
+    {
+      "name": "dangling",
+      "expected": "REFERENCE",
+      "actual": [
+        "REFERENCE"
+      ]
+    },
+    {
+      "name": "wrong reference kind",
+      "expected": "REFERENCE",
+      "actual": [
+        "REFERENCE"
+      ]
+    },
+    {
+      "name": "enum",
+      "expected": "ENUM",
+      "actual": [
+        "ENUM"
+      ]
+    },
+    {
+      "name": "endpoint",
+      "expected": "ENDPOINT",
+      "actual": [
+        "ENDPOINT"
+      ]
+    },
+    {
+      "name": "duplicate pair",
+      "expected": "PAIR",
+      "actual": [
+        "PAIR"
+      ]
+    },
+    {
+      "name": "unsupported rule",
+      "expected": "UNSUPPORTED_RULES",
+      "actual": [
+        "UNSUPPORTED_RULES"
+      ]
+    }
+  ],
+  "limitations": "Narrow prototype, structured input only. No duplicate JSON key detection, general schema validation, arbitrary constraints, runtime rules, atomic writes, Unicode canonicalization or production benchmark. Predicate constraints in fixture prose remain future executable cases."
+}

@@ -24,7 +24,7 @@ Method: inspected targeted public repository source excerpts and project metadat
 
 [Original executable feasibility check](prototypes/kernel-check.mjs) was run in a JavaScript execution environment. [Captured output](prototypes/kernel-check-results.json). It explores a finite abstract authorization protocol to exhaustion and detects deliberately faulty transitions; compares integer-count convolution with independent recursive enumeration across six dice sets; checks three original expected outcomes. No production implementation, full formal proof, or performance comparison is claimed.
 
-Baseline: 22 reachable states and 154 outgoing transitions; no checked violation. Four deliberately faulty variants each produced counterexamples. 182 exact bins and 200 threshold comparisons agreed. Scope is one request, abstract fixed identities, no concurrency or persistence, bounded revisions, uniform independent dice. The prototype does not verify full proposed contracts. A later production implementation needs independently authored conformance tests, file-failure injection and multi-request traces.
+Baseline: 22 reachable states and 154 outgoing transitions; no checked violation. Five deliberately faulty variants each produced counterexamples (including a revision-zero truthiness error discovered during prototype review). 182 exact bins and 200 threshold comparisons agreed. Scope is one request, abstract fixed identities, no concurrency or persistence, bounded revisions, uniform independent dice. The prototype does not verify full proposed contracts. A later production implementation needs independently authored conformance tests, file-failure injection and multi-request traces.
 
 ## Open decisions
 

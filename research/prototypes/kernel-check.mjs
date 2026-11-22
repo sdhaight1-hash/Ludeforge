@@ -6,7 +6,7 @@ function experiment(){
   const ops=["request","edit","approve","deny","unauthorized","retry","invalid"];
   function step(s,op,mutant){
     const n={...s};
-    if(op==="request"&&!s.pending&&!s.done&&s.stock>0){n.pending=s.rev;return n}
+    if(op==="request"&&(s.pending===null||(mutant==="overwrite"&&s.pending===0))&&!s.done&&s.stock>0){n.pending=s.rev;return n}
     if(op==="edit"&&s.rev<3){n.rev++;return n}
     if(op==="invalid"&&mutant==="partial"){n.stock--;return n}
     if(op==="retry"&&s.done&&mutant==="duplicate"){n.stock--;n.events++;return n}
@@ -20,6 +20,7 @@ function experiment(){
     if(["invalid","unauthorized","retry"].includes(op)&&key(s)!==key(n))return "rejected action mutated state";
     if(op==="approve"&&s.pending!==s.rev&&key(s)!==key(n))return "stale approval committed";
     if(op==="request"&&(s.stock!==n.stock||s.events!==n.events||s.rev!==n.rev))return "checkpoint committed effects";
+    if(op==="request"&&s.pending!==null&&key(s)!==key(n))return "request retry replaced checkpoint";
     if(op==="approve"&&key(s)!==key(n)&&(s.stock-n.stock!==1||n.events-s.events!==1||!n.done))return "non-atomic commit";
     return null;
   }
@@ -28,9 +29,10 @@ function experiment(){
     for(let i=0;i<q.length;i++){const {s,path}=q[i];for(const op of ops){const n=step(s,op,mutant);transitions++;const why=violation(s,n,op);if(why)return {states:seen.size,transitions,counterexample:[...path,op],why};const k=key(n);if(!seen.has(k)){seen.add(k);q.push({s:n,path:[...path,op]})}}}
     return {states:seen.size,transitions,counterexample:null};
   }
-  const protocol=Object.fromEntries(["baseline","partial","duplicate","stale","authority"].map(m=>[m,explore(m)]));
+  const mutants=["partial","duplicate","stale","authority","overwrite"];
+  const protocol=Object.fromEntries(["baseline",...mutants].map(m=>[m,explore(m)]));
   assert(protocol.baseline.counterexample===null,"baseline unsafe");
-  for(const m of ["partial","duplicate","stale","authority"])assert(protocol[m].counterexample!==null,`mutant survived ${m}`);
+  for(const m of mutants)assert(protocol[m].counterexample!==null,`mutant survived ${m}`);
   function dp(faces){let d=new Map([[0,1]]);for(const f of faces){const e=new Map();for(const [sum,c] of d)for(let j=1;j<=f;j++)e.set(sum+j,(e.get(sum+j)||0)+c);d=e}return d}
   function brute(faces){const d=new Map();function visit(i,s){if(i===faces.length){d.set(s,(d.get(s)||0)+1);return}for(let j=1;j<=faces[i];j++)visit(i+1,s+j)}visit(0,0);return d}
   let bins=0,thresholds=0; const probability=[];

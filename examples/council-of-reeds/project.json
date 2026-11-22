@@ -1,0 +1,196 @@
+{
+  "format_version": 1,
+  "project_id": "council",
+  "label": "Council of Reeds",
+  "types": [
+    {
+      "id": "delegate",
+      "label": "delegate",
+      "fields": [
+        {
+          "id": "influence",
+          "label": "influence",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 5
+        }
+      ]
+    },
+    {
+      "id": "proposal",
+      "label": "proposal",
+      "fields": [
+        {
+          "id": "sponsor",
+          "label": "sponsor",
+          "kind": "ref",
+          "required": true,
+          "target": "delegate"
+        },
+        {
+          "id": "status",
+          "label": "status",
+          "kind": "enum",
+          "required": true,
+          "options": [
+            {
+              "id": "draft",
+              "label": "Draft"
+            },
+            {
+              "id": "passed",
+              "label": "Passed"
+            },
+            {
+              "id": "rejected",
+              "label": "Rejected"
+            }
+          ]
+        },
+        {
+          "id": "minimum_support",
+          "label": "minimum_support",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 5
+        }
+      ]
+    },
+    {
+      "id": "pledge",
+      "label": "pledge",
+      "fields": [
+        {
+          "id": "pledging_delegate",
+          "label": "pledging_delegate",
+          "kind": "ref",
+          "required": true,
+          "target": "delegate"
+        },
+        {
+          "id": "pledged_proposal",
+          "label": "pledged_proposal",
+          "kind": "ref",
+          "required": true,
+          "target": "proposal"
+        },
+        {
+          "id": "strength",
+          "label": "strength",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 5
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "reed",
+      "label": "reed",
+      "type": "delegate",
+      "values": {
+        "influence": {
+          "kind": "int",
+          "value": 2
+        }
+      }
+    },
+    {
+      "id": "moss",
+      "label": "moss",
+      "type": "delegate",
+      "values": {
+        "influence": {
+          "kind": "int",
+          "value": 1
+        }
+      }
+    },
+    {
+      "id": "bridge",
+      "label": "bridge",
+      "type": "proposal",
+      "values": {
+        "sponsor": {
+          "kind": "ref",
+          "value": "reed"
+        },
+        "status": {
+          "kind": "enum",
+          "value": "draft"
+        },
+        "minimum_support": {
+          "kind": "int",
+          "value": 3
+        }
+      }
+    },
+    {
+      "id": "reed_pledge",
+      "label": "reed_pledge",
+      "type": "pledge",
+      "values": {
+        "pledging_delegate": {
+          "kind": "ref",
+          "value": "reed"
+        },
+        "pledged_proposal": {
+          "kind": "ref",
+          "value": "bridge"
+        },
+        "strength": {
+          "kind": "int",
+          "value": 2
+        }
+      }
+    },
+    {
+      "id": "moss_pledge",
+      "label": "moss_pledge",
+      "type": "pledge",
+      "values": {
+        "pledging_delegate": {
+          "kind": "ref",
+          "value": "moss"
+        },
+        "pledged_proposal": {
+          "kind": "ref",
+          "value": "bridge"
+        },
+        "strength": {
+          "kind": "int",
+          "value": 1
+        }
+      }
+    }
+  ],
+  "relation_types": [
+    {
+      "id": "supports",
+      "label": "Supports",
+      "source": "delegate",
+      "target": "proposal",
+      "mode": "directed",
+      "unique_pair": true
+    }
+  ],
+  "relations": [
+    {
+      "id": "support_reed",
+      "type": "supports",
+      "source": "reed",
+      "target": "bridge"
+    },
+    {
+      "id": "support_moss",
+      "type": "supports",
+      "source": "moss",
+      "target": "bridge"
+    }
+  ],
+  "rules": []
+}

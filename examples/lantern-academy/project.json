@@ -1,0 +1,110 @@
+{
+  "format_version": 1,
+  "project_id": "lantern",
+  "label": "Lantern Academy",
+  "types": [
+    {
+      "id": "role",
+      "label": "role",
+      "fields": [
+        {
+          "id": "max_rank",
+          "label": "max_rank",
+          "kind": "int",
+          "required": true,
+          "min": 1,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "id": "recruit",
+      "label": "recruit",
+      "fields": [
+        {
+          "id": "role_ref",
+          "label": "role_ref",
+          "kind": "ref",
+          "required": true,
+          "target": "role"
+        },
+        {
+          "id": "rank",
+          "label": "rank",
+          "kind": "int",
+          "required": true,
+          "min": 1,
+          "max": 3
+        },
+        {
+          "id": "focus",
+          "label": "focus",
+          "kind": "int",
+          "required": true,
+          "min": 0,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "id": "trial",
+      "label": "trial",
+      "fields": [
+        {
+          "id": "difficulty",
+          "label": "difficulty",
+          "kind": "int",
+          "required": true,
+          "min": 1,
+          "max": 25
+        }
+      ]
+    }
+  ],
+  "objects": [
+    {
+      "id": "lantern_role",
+      "label": "lantern_role",
+      "type": "role",
+      "values": {
+        "max_rank": {
+          "kind": "int",
+          "value": 3
+        }
+      }
+    },
+    {
+      "id": "neri",
+      "label": "neri",
+      "type": "recruit",
+      "values": {
+        "role_ref": {
+          "kind": "ref",
+          "value": "lantern_role"
+        },
+        "rank": {
+          "kind": "int",
+          "value": 2
+        },
+        "focus": {
+          "kind": "int",
+          "value": 3
+        }
+      }
+    },
+    {
+      "id": "first_trial",
+      "label": "first_trial",
+      "type": "trial",
+      "values": {
+        "difficulty": {
+          "kind": "int",
+          "value": 12
+        }
+      }
+    }
+  ],
+  "relation_types": [],
+  "relations": [],
+  "rules": []
+}
