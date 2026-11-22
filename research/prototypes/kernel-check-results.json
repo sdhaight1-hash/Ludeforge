@@ -1,0 +1,100 @@
+{
+  "protocol": {
+    "baseline": {
+      "states": 22,
+      "transitions": 154,
+      "counterexample": null
+    },
+    "partial": {
+      "states": 3,
+      "transitions": 7,
+      "counterexample": [
+        "invalid"
+      ],
+      "why": "rejected action mutated state"
+    },
+    "duplicate": {
+      "states": 10,
+      "transitions": 34,
+      "counterexample": [
+        "request",
+        "approve",
+        "retry"
+      ],
+      "why": "bounds/exactly-once"
+    },
+    "stale": {
+      "states": 9,
+      "transitions": 24,
+      "counterexample": [
+        "request",
+        "edit",
+        "approve"
+      ],
+      "why": "stale approval committed"
+    },
+    "authority": {
+      "states": 6,
+      "transitions": 12,
+      "counterexample": [
+        "request",
+        "unauthorized"
+      ],
+      "why": "rejected action mutated state"
+    }
+  },
+  "probability": [
+    {
+      "faces": [
+        20
+      ],
+      "outcomes": 20,
+      "bins": 20
+    },
+    {
+      "faces": [
+        6,
+        6
+      ],
+      "outcomes": 36,
+      "bins": 11
+    },
+    {
+      "faces": [
+        6,
+        6,
+        6
+      ],
+      "outcomes": 216,
+      "bins": 16
+    },
+    {
+      "faces": [
+        10,
+        10
+      ],
+      "outcomes": 100,
+      "bins": 19
+    },
+    {
+      "faces": [
+        4,
+        6,
+        8
+      ],
+      "outcomes": 192,
+      "bins": 16
+    },
+    {
+      "faces": [
+        100
+      ],
+      "outcomes": 100,
+      "bins": 100
+    }
+  ],
+  "bins": 182,
+  "thresholds": 200,
+  "fixtureChecks": 3,
+  "limitations": "Finite abstract state machine, one request, coarse revisions, no persistence/concurrency; dice sums only, independent uniform outcomes and small safe integer counts. Not production tests."
+}
