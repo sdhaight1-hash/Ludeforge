@@ -38,3 +38,7 @@ Phase 0: verify prior-art sources and licenses; choose original minimal referenc
 ## Overall targets
 
 See [THESIS.md](THESIS.md#21-proposed-acceptance-criteria). The 100,000-trial benchmark is provisional until workload, hardware, time and accuracy thresholds are specified. No phase is complete merely because documentation exists.
+
+## Current verified gate and deferred successors
+
+Initial Phase 0/1 scoped contracts and authoring acceptance: #2/#3/#4/#6/#7/#9/#12 closed. Remaining #1 upstream verification and #5 owner project license; Phase 2 implementation #8 with #10/#13/#16 integration work. [Phase 2 entry contract](design/PHASE2-RULE-ENTRY-CONTRACT.md) is specification, not runtime. Do not treat safe in-place writes as implemented: [#25](https://github.com/sdhaight1-hash/Ludeforge/issues/25) gates editor persistence. [#26](https://github.com/sdhaight1-hash/Ludeforge/issues/26) gates integrated Phase 8 evaluation using the completed protocol.

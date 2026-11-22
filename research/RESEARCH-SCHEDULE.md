@@ -56,3 +56,7 @@ Status: active planning schedule, 2026-11-22. This document schedules research b
 ## Ongoing management
 
 At each phase transition, audit the issue register, check the dependency/entry gate, record the research decision and verify against current code. Update ROADMAP.md and this schedule together if a research gate moves. Relevant research issues should be cited when creating feature implementation tickets. Use #9 as cross-phase evidence/evaluation coordinator and #1 for upstream source/license checks; a later dedicated ticket belongs to its own window rather than being a blanket blocker.
+
+## Phase 1 gate update — 2026-11-22
+
+Verified original core authoring gate: #2, #3, #6, #7 closed, #12 closed with explicit destructive-write deferral, #4 initial rule entry contract closed, #9 experimental protocol closed. No Phase 2 runtime claimed. #1 and #5 remain open; #10/#13/#16 continue at runtime/analysis gates. Successors: [#25](https://github.com/sdhaight1-hash/Ludeforge/issues/25) owns safe in-place editing, stale writes and recovery at Phase 3; [#26](https://github.com/sdhaight1-hash/Ludeforge/issues/26) owns actual integrated empirical evaluation at Phase 8 using #9's protocol. References to completed tickets above identify evidence/prerequisite history, not open blockers. See [verified audit](../Development-Audits/2026-11-22-phase1-constraints.md) and [LF-B01 measured baseline](../benchmarks/2026-11-22-phase1-baseline.md).

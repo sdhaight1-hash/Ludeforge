@@ -26,4 +26,4 @@ Original Phase 1 core validation scope (#7) now met by six authored slices and i
 
 ## Scoped ticket disposition
 
-#2, #3, #7 and #12 accepted/closed with linked conformance and research evidence; initial #4 rule-entry contract and #9 protocol documented. #1 external license/source checks and #5 project licensing remain open; Phase 2 runtime, #10/#13 implementation research and #16 deeper diagnostics are outstanding. The verified authoring core is not a complete TTRPG engine.
+#2, #3, #7 and #12 accepted/closed with linked conformance and research evidence; initial #4 rule-entry contract and #9 protocol closed as scoped specifications. #25 tracks future safe in-place editing and #26 tracks actual integrated Phase 8 evaluation. #1 external license/source checks and #5 project licensing remain open; Phase 2 runtime, #10/#13 implementation research and #16 deeper diagnostics are outstanding. The verified authoring core is not a complete TTRPG engine.
